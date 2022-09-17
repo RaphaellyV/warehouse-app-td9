@@ -1,6 +1,6 @@
 <h1>Novo Galpão</h1>
 
-<%= form_with(model: Warehouse.new) do |f| %>
+<%= form_with(model: @warehouse) do |f| %>
   <div>
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %>
@@ -28,6 +28,10 @@
   <div>
     <%= f.label :city, 'Cidade' %>
     <%= f.text_field :city %>
+  </div>
+  <div>
+    <%= f.label :state, 'Estado' %>
+    <%= f.text_field :state %>
   </div>
   <div>
     <%= f.submit 'Enviar' %>
