@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de um galpão' do
   it 'e vê informações adicionais' do
     # Arrange
-    Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
-                     address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
-                     description: 'Galpão destinado a cargas internacionais.', state: 'SP')
+    Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
+                      address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
+                      description: 'Galpão destinado a cargas internacionais.', state: 'SP')
 
     # Act
     visit('/')
@@ -23,9 +23,9 @@ describe 'Usuário vê detalhes de um galpão' do
 
   it 'e volta para a tela inicial' do
     # Arrange
-    Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
-                     address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
-                     description: 'Galpão destinado a cargas internacionais.', state: 'SP')
+    Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
+                      address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
+                      description: 'Galpão destinado a cargas internacionais.', state: 'SP')
 
     # Act
     visit '/'

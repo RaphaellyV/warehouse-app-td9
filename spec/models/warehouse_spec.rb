@@ -103,9 +103,9 @@ RSpec.describe Warehouse, type: :model do
     context 'uniqueness' do
       it 'false when code is already in use' do
         # Arrange
-        first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                           city: 'Rio', postal_code: '25000-000', area: 1000,
-                                           description: 'Alguma descrição.', state: 'RJ')
+        first_warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço',
+                                            city: 'Rio', postal_code: '25000-000', area: 1000,
+                                            description: 'Alguma descrição.', state: 'RJ')
         second_warehouse = Warehouse.new(name: 'Niterói', code: 'RIO', address: 'Avenida',
                                          city: 'Niterói', postal_code: '26000-000', area: 1500,
                                          description: 'Outra descrição.', state: 'Rio de Janeiro')
@@ -119,9 +119,9 @@ RSpec.describe Warehouse, type: :model do
   
       it 'false when name is already in use' do
         # Arrange
-        first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                           city: 'Rio', postal_code: '25000-000', area: 1000,
-                                           description: 'Alguma descrição.', state: 'RJ')
+        first_warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço',
+                                            city: 'Rio', postal_code: '25000-000', area: 1000,
+                                            description: 'Alguma descrição.', state: 'RJ')
       
         second_warehouse = Warehouse.new(name: 'Rio', code: 'NIT', address: 'Avenida',
                                          city: 'Niterói', postal_code: '26000-000', area: 1500,
