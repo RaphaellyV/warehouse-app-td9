@@ -1,0 +1,8 @@
+<h1>Fornecedores</h1>
+
+<% @suppliers.each do |s| %>
+  <div>
+    <%= s.brand_name %>
+    <%= s.city %> - <%= s.state %>
+  </div>
+<% end %>
