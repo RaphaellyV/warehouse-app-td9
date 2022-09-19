@@ -1,8 +1,19 @@
-<h1>Fornecedores</h1>
+<h1 class="my-3">Fornecedores</h1>
 
-<% @suppliers.each do |s| %>
-  <div>
-    <%= s.brand_name %>
-    <%= s.city %> - <%= s.state %>
-  </div>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suppliers.each do |s| %>
+      <tr>
+        <td><%= s.brand_name %></td>
+        <td><%= s.city %> - <%= s.state %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

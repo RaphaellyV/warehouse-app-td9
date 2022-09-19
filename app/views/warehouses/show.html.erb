@@ -1,5 +1,5 @@
 <h1>Galpão <%= @warehouse.code %></h1>
-<h2><%= @warehouse.description %></h2>
+<h3><%= @warehouse.description %></h3>
 <div>
   <strong>Endereço: </strong><%= @warehouse.address %> <strong>CEP: </strong><%= @warehouse.postal_code %>
 </div>
@@ -17,7 +17,7 @@
 </div>
 
 <div>
-  <%= link_to('Editar', edit_warehouse_path(@warehouse.id)) %>
+  <%= link_to 'Editar', edit_warehouse_path(@warehouse.id) %>
   <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete) %>
 </div>
 <div>
