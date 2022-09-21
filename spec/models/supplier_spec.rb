@@ -94,5 +94,46 @@ RSpec.describe Supplier, type: :model do
         expect(supplier.valid?).to eq false
       end
     end
+
+    context 'format' do
+      it 'false when postal code is short' do
+        # Arrange
+        supplier = Supplier.new(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
+                                full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-67', 
+                                email: 'contato@acme.com.br', phone_number: '22999994444')
+
+        # Act
+        result = supplier.valid?
+
+        # Assert
+        expect(result).to eq false
+      end
+
+      it 'false when postal code is long' do
+        # Arrange
+        supplier = Supplier.new(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
+                                full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-6700', 
+                                email: 'contato@acme.com.br', phone_number: '22999994444')
+
+        # Act
+        result = supplier.valid?
+
+        # Assert
+        expect(result).to eq false
+      end
+
+      it 'false when postal code has no -' do
+        # Arrange
+        supplier = Supplier.new(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
+                                full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240670', 
+                                email: 'contato@acme.com.br', phone_number: '22999994444')
+
+        # Act
+        result = supplier.valid?
+
+        # Assert
+        expect(result).to eq false
+      end
+    end
   end
 end
