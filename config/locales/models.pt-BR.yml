@@ -22,4 +22,5 @@ pt-BR:
         state: "Estado"
         postal_code: "CEP"
         email: "E-mail"
+        phone_number: "Telefone"
       
