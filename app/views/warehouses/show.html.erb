@@ -7,7 +7,7 @@
     <dt><strong>Endereço: </strong></dt>
     <dd><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
     <dt><strong>CEP: </strong></dt>
-    <dd><%= @warehouse.postal_code %></dd>
+    <dd><%= "#{@warehouse.postal_code[0, 2]}.#{@warehouse.postal_code[2, 7]}" %></dd>
     <dt><strong>Área: </strong></dt>
     <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
   </dl>
