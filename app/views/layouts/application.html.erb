@@ -19,10 +19,8 @@
       <%= render 'layouts/navbar' %>
     </header>
     <main>
-      <div>
-        <%= notice %>
-      </div>
-      <div class='container'>
+      <%= render 'layouts/flash_messages' %>
+      <div class="container">
         <%= yield %>
       </div>
     </main>
