@@ -1,5 +1,5 @@
 <h1 class="my-3">Galpões</h1>
-<div>
+<div class="my-3">
   <%= link_to 'Cadastrar Galpão', new_warehouse_path %>
 </div>
 <% @warehouses.each do |w| %>
@@ -8,10 +8,8 @@
     <dl>
       <dt>Código:</dt>
       <dd><%= w.code %></dd>
-      <dt>Cidade:</dt>
-      <dd><%= w.city %></dd>
-      <dt>Estado:</dt>
-      <dd><%= w.state %></dd>
+      <dt>Local:</dt>
+      <dd><%= w.city %>/<%= w.state %></dd>
       <dt>Área:</dt>
       <dd><%= number_with_delimiter(w.area, delimiter: '.') %> m²</dd>
     </dl>  

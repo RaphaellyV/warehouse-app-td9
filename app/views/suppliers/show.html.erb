@@ -1,0 +1,23 @@
+<h1 class="my-3"><%= @supplier.brand_name %></h1>
+<h4 class="my-3"><%= @supplier.corporate_name %></h4>
+<div>
+  <dl>
+    <dt><strong>CNPJ: </strong></dt>
+    <dd>
+    <%= "#{@supplier.registration_number[0, 2]}.#{@supplier.registration_number[2, 3]}.#{@supplier.registration_number[5, 3]}/#{
+         @supplier.registration_number[8, 4]}-#{@supplier.registration_number[12, 2]}" %>
+    </dd>
+    <dt><strong>Endereço: </strong></dt>
+    <dd><%= @supplier.full_address %> - <%= @supplier.city %> - <%= @supplier.state %></dd>
+    <dt><strong>CEP: </strong></dt>
+    <dd><%= "#{@supplier.postal_code[0, 2]}.#{@supplier.postal_code[2, 7]}" %></dd>
+    <dt><strong>Telefone: </strong></dt>
+    <dd><%= "(#{@supplier.phone_number[0, 2]})#{@supplier.phone_number[2, 5]}-#{@supplier.phone_number[7, 4]}" %></dd>
+    <dt><strong>E-mail: </strong></dt>
+    <dd><%= @supplier.email %></dd>
+  </dl>
+</div>
+
+<div>
+  <%= link_to 'Voltar', suppliers_path %>
+</div>

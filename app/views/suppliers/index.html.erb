@@ -1,19 +1,26 @@
 <h1 class="my-3">Fornecedores</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">Estado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @suppliers.each do |s| %>
+<% if @suppliers.any? %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= s.brand_name %></td>
-        <td><%= s.city %> - <%= s.state %></td>
+        <th scope="col">Nome</th>
+        <th scope="col">Estado</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |s| %>
+        <tr>
+          <td><%= link_to s.brand_name, s %></td>
+          <td><%= s.city %> - <%= s.state %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem fornecedores cadastrados.</p>
+<% end %>
 
+<div>
+  <%= link_to 'Cadastrar Fornecedor', new_supplier_path %>
+</div>

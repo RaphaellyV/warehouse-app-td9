@@ -14,10 +14,9 @@ describe 'Usuário vê detalhes de um galpão' do
     # Assert
     expect(page).to have_content('Galpão GRU')
     expect(page).to have_content('Nome: Aeroporto SP')
-    expect(page).to have_content('Cidade: Guarulhos')
-    expect(page).to have_content('Estado: SP')
+    expect(page).to have_content('CEP: 15000-000')
     expect(page).to have_content('Área: 100.000 m²')
-    expect(page).to have_content('Endereço: Avenida do Aeroporto, 1000 CEP: 15000-000')
+    expect(page).to have_content('Endereço: Avenida do Aeroporto, 1000 - Guarulhos/SP')
     expect(page).to have_content('Galpão destinado a cargas internacionais.')
   end
 

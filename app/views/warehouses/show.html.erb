@@ -1,16 +1,13 @@
-<h1>Galpão <%= @warehouse.code %></h1>
+<h1 class="my-3">Galpão <%= @warehouse.code %></h1>
 <h3><%= @warehouse.description %></h3>
-<div>
-  <strong>Endereço: </strong><%= @warehouse.address %> <strong>CEP: </strong><%= @warehouse.postal_code %>
-</div>
 <div>
   <dl>
     <dt><strong>Nome: </strong></dt>
     <dd><%= @warehouse.name %></dd>
-    <dt><strong>Cidade: </strong></dt>
-    <dd><%= @warehouse.city %></dd>
-    <dt><strong>Estado: </strong></dt>
-    <dd><%= @warehouse.state %></dd>
+    <dt><strong>Endereço: </strong></dt>
+    <dd><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
+    <dt><strong>CEP: </strong></dt>
+    <dd><%= @warehouse.postal_code %></dd>
     <dt><strong>Área: </strong></dt>
     <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
   </dl>

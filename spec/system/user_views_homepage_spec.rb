@@ -26,15 +26,13 @@ describe 'Usuário visita a tela inicial' do
 
     expect(page).to have_content('Rio')
     expect(page).to have_content('Código: SDU')
-    expect(page).to have_content('Cidade: Rio de Janeiro')
-    expect(page).to have_content('Estado: RJ')
-    expect(page).to have_content('60.000 m²')
+    expect(page).to have_content('Local: Rio de Janeiro/RJ')
+    expect(page).to have_content('Área: 60.000 m²')
 
     expect(page).to have_content('Maceió')
     expect(page).to have_content('Código: MCZ')
-    expect(page).to have_content('Cidade: Maceió')
-    expect(page).to have_content('Estado: AL')
-    expect(page).to have_content('50.000 m²')
+    expect(page).to have_content('Local: Maceió/AL')
+    expect(page).to have_content('Área: 50.000 m²')
   end
 
   it 'e não existem galpões cadastrados' do
