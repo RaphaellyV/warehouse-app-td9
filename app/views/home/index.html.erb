@@ -2,10 +2,10 @@
 <div class="my-3">
   <%= link_to 'Cadastrar Galpão', new_warehouse_path %>
 </div>
-<div class="row">
+<div class="row gy-5">
   <% @warehouses.each do |w| %>
     <div class="col">
-      <div class="card" >
+      <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><%= link_to(w.name, warehouse_path(w.id)) %></h5>
           <dl class="card-text">
