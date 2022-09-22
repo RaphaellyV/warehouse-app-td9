@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes do fornecedor ' do
-  it 'a partir do menu' do
-    # Arrange
-
-    # Act
-    visit root_path
-    within 'nav' do
-      click_on 'Fornecedores'
-    end
-    
-    # Arrange
-    expect(current_path).to eq suppliers_path
-  end
-
   it 'com sucesso' do
     # Arrange
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 

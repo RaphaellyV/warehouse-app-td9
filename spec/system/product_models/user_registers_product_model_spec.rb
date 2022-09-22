@@ -23,9 +23,12 @@ describe 'Usuário cadastra um modelo de produto' do
 
   it 'com sucesso' do
     # Arrange
-    supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                email: 'contato@samsung.com.br', phone_number: '22998888888')
+    Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
+                     full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
+                     email: 'contato@samsung.com.br', phone_number: '22998888888')
+    Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
+                     full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
+                     email: 'contato@acme.com.br', phone_number: '22999994444')
 
     # Act
     visit root_path

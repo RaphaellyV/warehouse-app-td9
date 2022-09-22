@@ -1,5 +1,6 @@
 <h1 class="my-3">Produto: <%= @product_model.name %></h1>
 <h5 class="my-3">SKU: <%= @product_model.sku %></h5>
+
 <div>
   <dl>
     <dt><strong>Dimensões: </strong></dt>
@@ -11,4 +12,8 @@
     <dt><strong>Fornecedor: </strong></dt>
     <dd><%= @product_model.supplier.brand_name %></dd>
   </dl>
+</div>
+
+<div class="d-grid gap-2 col-4 mb-3">
+  <%= link_to 'Voltar', product_models_path, class:"btn btn-outline-dark" %>
 </div>

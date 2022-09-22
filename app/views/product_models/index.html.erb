@@ -14,11 +14,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @product_models.each do |p| %>
+      <% @product_models.each do |pm| %>
         <tr>
-          <td><%= p.name %></td>
-          <td><%= p.sku %></td>
-          <td><%= p.supplier.brand_name %></td>
+          <td><%= link_to pm.name, pm %></td>
+          <td><%= pm.sku %></td>
+          <td><%= pm.supplier.brand_name %></td>
         </tr>
       <% end %>
     </tbody>
