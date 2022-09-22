@@ -72,7 +72,7 @@ describe 'Usuário edita um fornecedor' do
     # Act
     visit root_path
     within 'nav' do
-    click_on 'Fornecedores'
+      click_on 'Fornecedores'
     end
     click_on 'ACME'
     click_on 'Editar Fornecedor'

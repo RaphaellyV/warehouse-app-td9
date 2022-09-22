@@ -2,19 +2,26 @@
 <div class="my-3">
   <%= link_to 'Cadastrar Galpão', new_warehouse_path %>
 </div>
-<% @warehouses.each do |w| %>
-  <div>
-    <h3><%= link_to(w.name, warehouse_path(w.id)) %></h3>
-    <dl>
-      <dt>Código:</dt>
-      <dd><%= w.code %></dd>
-      <dt>Local:</dt>
-      <dd><%= w.city %>/<%= w.state %></dd>
-      <dt>Área:</dt>
-      <dd><%= number_with_delimiter(w.area, delimiter: '.') %> m²</dd>
-    </dl>  
-  </div>
-<% end %>
+<div class="row">
+  <% @warehouses.each do |w| %>
+    <div class="col">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to(w.name, warehouse_path(w.id)) %></h5>
+          <dl class="card-text">
+            <dt>Código:</dt>
+            <dd><%= w.code %></dd>
+            <dt>Local:</dt>
+            <dd><%= w.city %>/<%= w.state %></dd>
+            <dt>Área:</dt>
+            <dd><%= number_with_delimiter(w.area, delimiter: '.') %> m²</dd>
+          </dl>  
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 
 <% if @warehouses.empty? %>
   <p>Não existem galpões cadastrados.</p>

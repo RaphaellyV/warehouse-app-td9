@@ -1,0 +1,23 @@
+<h1 class="my-3">Produtos</h1>
+<% if @product_models.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">SKU</th>
+        <th scope="col">Fornecedor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_models.each do |p| %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.sku %></td>
+          <td><%= p.supplier.brand_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem produtos cadastrados.</p>
+<% end %>
