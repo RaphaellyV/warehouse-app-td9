@@ -1,4 +1,9 @@
 <h1 class="my-3">Produtos</h1>
+
+<div>
+  <%= link_to 'Cadastrar Modelo de Produto', new_product_model_path, class: "btn btn-outline-dark " %>
+</div>
+
 <% if @product_models.any? %>
   <table class="table">
     <thead>
@@ -21,3 +26,6 @@
 <% else %>
   <p>Não existem produtos cadastrados.</p>
 <% end %>
+
+
+

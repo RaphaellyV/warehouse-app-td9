@@ -34,7 +34,7 @@ describe 'Usuário vê detalhes do fornecedor ' do
     expect(page).to have_content 'Endereço: Av. das Palmas, 100 - Bauru - SP'
     expect(page).to have_content 'CEP: 12.240-670'
     expect(page).to have_content 'E-mail: contato@acme.com.br'
-    expect(page).to have_content 'Telefone: (22)99999-4444'
+    expect(page).to have_content 'Telefone: (22) 99999-4444'
   end
 
   it 'e volta para a lista de fornecedores' do

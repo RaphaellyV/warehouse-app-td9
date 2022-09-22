@@ -1,0 +1,35 @@
+<%= form_with(model: @product_model) do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+    <div class="mb-3">
+    <%= f.label :sku, class: "form-label fw-semibold" %>
+    <%= f.text_field :sku, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+      <%= f.label :weight, class: "form-label fw-semibold" %>
+      <%= f.number_field :weight, class: "form-control", placeholder: 'peso em g' %>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :width, class: "form-label fw-semibold" %>
+      <%= f.number_field :width, class: "form-control", placeholder: 'comprimento em cm' %>
+    </div>
+    <div class="col">
+      <%= f.label :depth, class: "form-label fw-semibold" %>
+      <%= f.number_field :depth, class: "form-control", placeholder: 'largura em cm' %>
+    </div>
+    <div class="col">
+      <%= f.label :height, class: "form-label fw-semibold" %>
+      <%= f.number_field :height, class: "form-control", placeholder: 'altura em cm' %>
+    </div>
+  </div>
+  <div class="mb-3">
+      <%= f.label :supplier_id, class: "form-label fw-semibold" %>
+      <%= f.collection_select :supplier_id, @suppliers, :id, :brand_name %>
+  </div>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

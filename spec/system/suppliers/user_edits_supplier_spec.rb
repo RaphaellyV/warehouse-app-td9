@@ -60,7 +60,7 @@ describe 'Usuário edita um fornecedor' do
     expect(page).to have_content 'Endereço: Av. das Estradas, 101 - Campos - RJ'
     expect(page).to have_content 'CEP: 12.240-555'
     expect(page).to have_content 'E-mail: contato@alameda.com.br'
-    expect(page).to have_content 'Telefone: (22)99999-4455'
+    expect(page).to have_content 'Telefone: (22) 99999-4455'
   end
 
   it 'e mantém os campos obrigatórios' do

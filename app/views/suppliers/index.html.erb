@@ -1,5 +1,9 @@
 <h1 class="my-3">Fornecedores</h1>
 
+<div>
+  <%= link_to 'Cadastrar Fornecedor', new_supplier_path, class: "btn btn-outline-dark " %>
+</div>
+
 <% if @suppliers.any? %>
   <table class="table">
     <thead>
@@ -20,7 +24,3 @@
 <% else %>
   <p>Não existem fornecedores cadastrados.</p>
 <% end %>
-
-<div>
-  <%= link_to 'Cadastrar Fornecedor', new_supplier_path, class: "btn btn-outline-dark " %>
-</div>

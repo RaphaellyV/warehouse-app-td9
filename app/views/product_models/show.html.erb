@@ -1,0 +1,14 @@
+<h1 class="my-3">Produto: <%= @product_model.name %></h1>
+<h5 class="my-3">SKU: <%= @product_model.sku %></h5>
+<div>
+  <dl>
+    <dt><strong>Dimensões: </strong></dt>
+    <dd>
+    <%= @product_model.width %> cm x <%= @product_model.depth %> cm x <%= @product_model.height %> cm
+    </dd>
+    <dt><strong>Peso: </strong></dt>
+    <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
+    <dt><strong>Fornecedor: </strong></dt>
+    <dd><%= @product_model.supplier.brand_name %></dd>
+  </dl>
+</div>
