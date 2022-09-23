@@ -8,15 +8,15 @@ Warehouse.create!(name: 'Maceió', code: 'MCZ',  city: 'Maceió', area: 50_000, 
 Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
                  full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
                  email: 'contato@acme.com.br', phone_number: '22999994444')
-Supplier.create!(corporate_name: 'Stark Industries LTDA', brand_name: 'Stark', registration_number: '11000000000100', 
-                 full_address: 'Torre da Indústria, 1', city: 'Teresina', state: 'PI', postal_code: '64000-020',
-                 email: 'contato@stark.com', phone_number: '22999994445')
 supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                             full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
                             email: 'contato@samsung.com.br', phone_number: '22998888888')
+ other_supplier = Supplier.create!(corporate_name: 'Stark Industries LTDA', brand_name: 'Stark', registration_number: '11000000000100', 
+                             full_address: 'Torre da Indústria, 1', city: 'Teresina', state: 'PI', postal_code: '64000-020',
+                             email: 'contato@stark.com', phone_number: '22999994445')
 
 # Produtos Exemplo
 ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
-                       sku: 'TV32-SAMSU-XPTO90', supplier: supplier)
+                     sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
 ProductModel.create!(name:'Soundbar 7.1 Surround', weight: 3_000, width: 80, height: 15, 
-                       depth: 10, sku: 'SOU71-SAMSU-NOIZ77', supplier: supplier)
+                     depth: 10, sku: 'SOU71PP-STARK-NOIZ77', supplier: other_supplier)
