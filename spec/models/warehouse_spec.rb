@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Warehouse, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'false when name is empty' do
+      it 'name is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: '', code: 'RIO', address: 'Endereço',
                                   city: 'Rio', postal_code: '25000-000', area: 1000,
@@ -15,7 +15,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when code is empty' do
+      it 'code is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: '', address: 'Endereço',
                                   city: 'Rio', postal_code: '25000-000', area: 1000,
@@ -27,7 +27,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when address is empty' do
+      it 'address is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: '',
                                   city: 'Rio', postal_code: '25000-000', area: 1000,
@@ -39,7 +39,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when city is empty' do
+      it 'city is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
                                   city: '', postal_code: '25000-000', area: 1000,
@@ -51,7 +51,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
 
-      it 'false when state is empty' do
+      it 'state is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
                                   city: 'Rio de Janeiro', postal_code: '25000-000', area: 1000,
@@ -63,7 +63,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when postal code is empty' do
+      it 'postal code is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
                                   city: 'Rio de Janeiro', postal_code: '', area: 1000,
@@ -75,7 +75,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when area is empty' do
+      it 'area is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
                                   city: 'Rio de Janeiro', postal_code: '25000-000', area: '',
@@ -87,7 +87,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when description is empty' do
+      it 'description is mandatory' do
         # Arrange
         warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
                                   city: 'Rio de Janeiro', postal_code: '25000-000', area: 1000,
@@ -101,7 +101,7 @@ RSpec.describe Warehouse, type: :model do
     end
     
     context 'uniqueness' do
-      it 'false when code is already in use' do
+      it 'code must be unique' do
         # Arrange
         first_warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço',
                                             city: 'Rio', postal_code: '25000-000', area: 1000,
@@ -117,7 +117,7 @@ RSpec.describe Warehouse, type: :model do
         expect(result).to eq false
       end
   
-      it 'false when name is already in use' do
+      it 'name must be unique' do
         # Arrange
         first_warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço',
                                             city: 'Rio', postal_code: '25000-000', area: 1000,

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra um modelo de produto' do
   it 'a partir da tela inicial' do
     # Arrange
-
+    
     # Act
     visit root_path
     within 'nav' do
@@ -50,5 +50,22 @@ describe 'Usuário cadastra um modelo de produto' do
     expect(page).to have_content('Dimensões: 90 cm x 10 cm x 60 cm')
     expect(page).to have_content('Peso: 10 kg')
     expect(page).to have_content('Fornecedor: Samsung')
+  end
+
+  it 'com dados incompletos' do
+    # Arrange
+
+    # Act
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Cadastrar Modelo de Produto'
+    fill_in 'Nome', with: ''
+    fill_in 'SKU', with: ''
+    click_on 'Criar Modelo de Produto'
+
+    # Assert
+    expect(page).to have_content('Não foi possível cadastrar o Modelo de Produto.')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('SKU não pode ficar em branco')
   end
 end
