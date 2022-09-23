@@ -18,7 +18,7 @@
         <tr>
           <td><%= link_to pm.name, pm %></td>
           <td><%= pm.sku %></td>
-          <td><%= pm.supplier.brand_name %></td>
+          <td><%= link_to pm.supplier.brand_name, supplier_path(pm.supplier) %></td>
         </tr>
       <% end %>
     </tbody>
