@@ -51,4 +51,23 @@ describe 'Usuário vê modelos de produtos' do
     # Assert
     expect(page).to have_content 'Não existem produtos cadastrados.'
   end
+
+  it 'e acessa a página de detalhes do fornecedor' do
+    # Arrange
+    supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
+                                full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
+                                email: 'contato@samsung.com.br', phone_number: '22998888888')
+    ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
+                         sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+
+    # Act
+    visit root_path
+    within 'nav' do
+    click_on 'Produtos'
+    end 
+    click_on 'Samsung'
+
+    # Assert
+    expect(current_path).to eq supplier_path(supplier)
+  end
 end

@@ -2,7 +2,7 @@ class SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :edit, :update]
   
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.all.order(:brand_name)
   end
 
   def new
@@ -20,7 +20,9 @@ class SuppliersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @product_models = ProductModel.where(supplier:@supplier).order(:name)
+  end
 
   def edit; end
 

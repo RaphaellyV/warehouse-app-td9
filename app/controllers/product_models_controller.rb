@@ -2,7 +2,7 @@ class ProductModelsController < ApplicationController
 
 
   def index
-    @product_models = ProductModel.all
+    @product_models = ProductModel.all.order(:name)
   end
 
   def show

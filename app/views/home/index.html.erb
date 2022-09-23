@@ -2,10 +2,11 @@
 <div class="my-3">
   <%= link_to 'Cadastrar Galpão', new_warehouse_path, class: "btn btn-outline-dark" %>
 </div>
-<div class="row gy-5">
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
   <% @warehouses.each do |w| %>
     <div class="col">
-      <div class="card" style="width: 18rem;">
+      <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= link_to(w.name, warehouse_path(w.id)) %></h5>
           <dl class="card-text">
@@ -22,7 +23,8 @@
   <% end %>
 </div>
 
-
 <% if @warehouses.empty? %>
-  <p>Não existem galpões cadastrados.</p>
+  <div class="alert alert-secondary text-center" role="alert">
+    Não existem galpões cadastrados.
+  </div>
 <% end %>

@@ -10,7 +10,7 @@
     <dt><strong>Peso: </strong></dt>
     <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
     <dt><strong>Fornecedor: </strong></dt>
-    <dd><%= @product_model.supplier.brand_name %></dd>
+    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier) %></dd>
   </dl>
 </div>
 

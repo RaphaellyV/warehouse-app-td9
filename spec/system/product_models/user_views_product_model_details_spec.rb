@@ -56,6 +56,7 @@ describe 'Usuário vê detalhes de um modelo de produto' do
     within 'nav' do
     click_on 'Produtos'
     end 
+    click_on 'TV 32'
     click_on 'Samsung'
 
     # Assert

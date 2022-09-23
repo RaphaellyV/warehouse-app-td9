@@ -19,7 +19,32 @@
   </dl>
 </div>
 
-<div class="d-grid gap-2 col-4 mb-3">
-  <%= link_to 'Editar Fornecedor', edit_supplier_path, class: "btn btn-dark" %>
-  <%= link_to 'Voltar', suppliers_path, class:"btn btn-outline-dark" %>
-</div>
+  <div class="row">
+    <div class="d-grid gap-2 col-4 my-3">
+      <%= link_to 'Editar Fornecedor', edit_supplier_path, class: "btn btn-dark" %>
+    </div>
+    <div class="d-grid gap-2 col-4 my-3">
+      <%= link_to 'Voltar', suppliers_path, class:"btn btn-outline-dark" %>
+    </div>
+  </div>
+
+  <% if @product_models.empty? %>
+    <div class="alert alert-secondary text-center" role="alert">
+      Não existem Modelos de Produto cadastrados para este Fornecedor
+    </div>
+  <% else %>
+    <% @product_models.each do |pm| %>
+          <div class="card my-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= pm.name %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">SKU: <%= pm.sku %></h6>
+              <dl class="card-text">
+                <dt>Peso:</dt>
+                <dd><%= number_to_human(pm.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
+                <dt>Dimensões:</dt>
+                <dd><%= pm.width %> cm x <%= pm.depth %> cm x <%= pm.height %> cm</dd>
+              </dl>  
+            </div>
+          </div>
+      <% end %>
+  <% end %>
