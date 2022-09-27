@@ -16,9 +16,9 @@
     <tbody>
       <% @product_models.each do |pm| %>
         <tr>
-          <td><%= link_to pm.name, pm %></td>
+          <td><%= link_to pm.name, pm, class: "link-dark" %></td>
           <td><%= pm.sku %></td>
-          <td><%= link_to pm.supplier.brand_name, supplier_path(pm.supplier) %></td>
+          <td><%= link_to pm.supplier.brand_name, supplier_path(pm.supplier), class: "link-dark" %></td>
         </tr>
       <% end %>
     </tbody>

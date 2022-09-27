@@ -15,7 +15,7 @@
     <tbody>
       <% @suppliers.each do |s| %>
         <tr>
-          <td><%= link_to s.brand_name, s %></td>
+          <td><%= link_to s.brand_name, s, class: "link-dark" %></td>
           <td><%= s.city %> - <%= s.state %></td>
         </tr>
       <% end %>

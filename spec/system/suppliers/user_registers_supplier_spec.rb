@@ -3,9 +3,18 @@ require 'rails_helper'
 describe 'Usuário cadastra um fornecedor' do
   it 'a partir da tela inicial' do
     # Arrange
+    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     # Act
     visit root_path
+    within 'nav' do
+      click_on 'Entrar'
+    end
+    within 'form' do
+      fill_in 'E-mail', with: 'pessoa@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
     within 'nav' do
       click_on 'Fornecedores'
     end
@@ -25,9 +34,18 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'com sucesso' do
     # Arrange
+    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     # Act
     visit root_path
+    within 'nav' do
+      click_on 'Entrar'
+    end
+    within 'form' do
+      fill_in 'E-mail', with: 'pessoa@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
     within 'nav' do
       click_on 'Fornecedores'
     end
@@ -56,9 +74,18 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'com dados incompletos' do
     #Arrange
+    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     #Act
     visit root_path
+    within 'nav' do
+      click_on 'Entrar'
+    end
+    within 'form' do
+      fill_in 'E-mail', with: 'pessoa@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
     within 'nav' do
       click_on 'Fornecedores'
     end

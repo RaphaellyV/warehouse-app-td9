@@ -20,3 +20,6 @@ ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth:
                      sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
 ProductModel.create!(name:'Soundbar 7.1 Surround', weight: 3_000, width: 80, height: 15, 
                      depth: 10, sku: 'SOU71PP-STARK-NOIZ77', supplier: other_supplier)
+
+# Usuários Exemplo
+User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
