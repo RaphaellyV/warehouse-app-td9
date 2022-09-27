@@ -1,20 +1,23 @@
 require 'rails_helper'
 
 describe 'Usuário vê modelos de produtos' do
-  it 'a partir do menu' do
+  it 'se estiver autenticado' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     # Act
+    visit product_models_path
+
+    # Assist
+    expect(current_path).to eq new_user_session_path
+  end
+
+  it 'a partir do menu' do
+    # Arrange
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+
+    # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
       click_on 'Produtos'
     end
@@ -25,7 +28,7 @@ describe 'Usuário vê modelos de produtos' do
 
   it 'com sucesso' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                                full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
@@ -36,15 +39,8 @@ describe 'Usuário vê modelos de produtos' do
                           depth: 10, sku: 'SOU71PP-SAMSU-NOIZ77', supplier: supplier)
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
       click_on 'Produtos'
     end
@@ -60,18 +56,11 @@ describe 'Usuário vê modelos de produtos' do
 
   it 'e não existem produtos cadastrados' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
       click_on 'Produtos'
     end
@@ -82,7 +71,7 @@ describe 'Usuário vê modelos de produtos' do
 
   it 'e acessa a página de detalhes do fornecedor' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                                 full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
@@ -91,15 +80,8 @@ describe 'Usuário vê modelos de produtos' do
                          sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
     click_on 'Produtos'
     end 

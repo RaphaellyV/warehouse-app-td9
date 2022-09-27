@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê modelos de produto do fornecedor' do
   it 'com sucesso' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                                 full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
@@ -14,15 +14,8 @@ describe 'Usuário vê modelos de produto do fornecedor' do
                          depth: 10, sku: 'SOU71PP-SAMSU-NOIZ77', supplier: supplier)
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     click_on 'Fornecedores'
     click_on 'Samsung'
 
@@ -39,22 +32,15 @@ describe 'Usuário vê modelos de produto do fornecedor' do
 
   it 'e não existem modelos de produto cadastrados' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                                 full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
                                 email: 'contato@samsung.com.br', phone_number: '22998888888')
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     click_on 'Fornecedores'
     click_on 'Samsung'
 
@@ -64,7 +50,7 @@ describe 'Usuário vê modelos de produto do fornecedor' do
 
   it 'e não vê modelos de produto de outros fornecedores' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
                                 full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
@@ -79,15 +65,8 @@ describe 'Usuário vê modelos de produto do fornecedor' do
                          depth: 10, sku: 'SOU71PP-STARK-NOIZ77', supplier: other_supplier)
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     click_on 'Fornecedores'
     click_on supplier.brand_name
 

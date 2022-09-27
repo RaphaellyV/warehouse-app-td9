@@ -39,6 +39,7 @@ describe 'Usuário se autentica' do
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'
     end
+    click_on 'Pessoa'
     click_on 'Sair'
 
     # Assert
@@ -49,6 +50,6 @@ describe 'Usuário se autentica' do
       expect(page).not_to have_content 'Fornecedores'
       expect(page).not_to have_content 'Produtos'
     end
-      expect(page).to have_content 'Logout efetuado com sucesso.'
+      expect(page).to have_content 'Para continuar, faça login ou registre-se.'
   end
 end

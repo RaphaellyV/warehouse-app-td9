@@ -6,7 +6,6 @@ describe 'Usuário se autentica' do
 
     # Act
     visit root_path
-    click_on 'Entrar'
     click_on 'Cadastre-se'
     fill_in 'Nome', with: 'Pessoa'
     fill_in 'E-mail', with: 'pessoa@email.com'
@@ -24,7 +23,6 @@ describe 'Usuário se autentica' do
 
     # Act
     visit root_path
-    click_on 'Entrar'
     click_on 'Cadastre-se'
     fill_in 'Nome', with: ''
     fill_in 'E-mail', with: ''

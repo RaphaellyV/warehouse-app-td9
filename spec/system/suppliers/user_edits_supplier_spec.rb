@@ -3,22 +3,15 @@ require 'rails_helper'
 describe 'Usuário edita um fornecedor' do
   it 'a partir da página de detalhes' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
                      full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
                      email: 'contato@acme.com.br', phone_number: '22999994444')
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
       click_on 'Fornecedores'
     end
@@ -40,22 +33,15 @@ describe 'Usuário edita um fornecedor' do
 
   it 'com sucesso' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
 
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
                      full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
                      email: 'contato@acme.com.br', phone_number: '22999994444')
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
     click_on 'Fornecedores'
     end
@@ -85,22 +71,15 @@ describe 'Usuário edita um fornecedor' do
 
   it 'e mantém os campos obrigatórios' do
     # Arrange
-    User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
     
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
       full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
       email: 'contato@acme.com.br', phone_number: '22999994444')
 
     # Act
+    login_as user
     visit root_path
-    within 'nav' do
-      click_on 'Entrar'
-    end
-    within 'form' do
-      fill_in 'E-mail', with: 'pessoa@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     within 'nav' do
       click_on 'Fornecedores'
     end
