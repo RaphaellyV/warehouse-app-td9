@@ -1,4 +1,4 @@
-<h1 class="my-3">Fornecedores</h1>
+<h1 class="my-3"><%= Supplier.model_name.human(count: 2) %></h1>
 
 <div>
   <%= link_to 'Cadastrar Fornecedor', new_supplier_path, class: "btn btn-outline-dark " %>
@@ -8,8 +8,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Estado</th>
+        <th scope="col"><%= Supplier.human_attribute_name(:brand_name) %></th>
+        <th scope="col"><%= Supplier.human_attribute_name(:state) %></th>
       </tr>
     </thead>
     <tbody>

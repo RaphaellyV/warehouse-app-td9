@@ -1,10 +1,12 @@
 pt-BR:
   activerecord:
     models:
-      order: "Pedido"
+      order: 
+        one: "Pedido"
+        other: "Pedidos"
     attributes:
       order:
-        user: "Usuário responsável"
+        user: "Usuário Responsável"
         estimated_delivery_date: "Data Prevista de Entrega"
         supplier_id: "Fornecedor"
         supplier: "Fornecedor"

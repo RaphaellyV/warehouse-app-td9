@@ -1,14 +1,14 @@
-<h1 class="my-3">Galpão <%= @warehouse.code %></h1>
+<h1 class="my-3"><%= Warehouse.model_name.human %> <%= @warehouse.code %></h1>
 <h3 class="text-muted"><%= @warehouse.description %></h3>
 <div>
   <dl>
-    <dt><strong>Nome: </strong></dt>
+    <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:name) %>:</dt>
     <dd><%= @warehouse.name %></dd>
-    <dt><strong>Endereço: </strong></dt>
+    <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:address) %>:</dt>
     <dd><%= @warehouse.formatted_address %></dd> 
-    <dt><strong>CEP: </strong></dt>
+    <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:postal_code) %>:</dt>
     <dd><%= @warehouse.formatted_postal_code %></dd>
-    <dt><strong>Área: </strong></dt>
+    <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:area) %>:</dt>
     <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
   </dl>
 </div>

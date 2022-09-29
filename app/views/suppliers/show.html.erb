@@ -3,17 +3,17 @@
 
 <div>
   <dl>
-    <dt><strong>CNPJ: </strong></dt>
+    <dt class="fw-semibold"><%= Supplier.human_attribute_name(:registration_number) %>:</dt>
     <dd>
     <%= @supplier.formatted_registration_number %>
     </dd>
-    <dt><strong>Endereço: </strong></dt>
+    <dt class="fw-semibold"><%= Supplier.human_attribute_name(:full_address) %>:</dt>
     <dd><%= @supplier.formatted_address %></dd>
-    <dt><strong>CEP: </strong></dt>
+    <dt class="fw-semibold"><%= Supplier.human_attribute_name(:postal_code) %>:</dt>
     <dd><%= @supplier.formatted_postal_code %></dd>
-    <dt><strong>Telefone: </strong></dt>
+    <dt class="fw-semibold"><%= Supplier.human_attribute_name(:phone_number) %>:</dt>
     <dd><%= number_to_phone(@supplier.phone_number, pattern: /(\d{1,5})(\d{5})(\d{4})$/, area_code: true) %></dd>
-    <dt><strong>E-mail: </strong></dt>
+    <dt class="fw-semibold"><%= Supplier.human_attribute_name(:email) %>:</dt>
     <dd><%= @supplier.email %></dd>
   </dl>
 </div>
@@ -37,11 +37,11 @@
           <div class="card my-3">
             <div class="card-body">
               <h5 class="card-title"><%= pm.name %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">SKU: <%= pm.sku %></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><%= ProductModel.human_attribute_name(:sku) %>: <%= pm.sku %></h6>
               <dl class="card-text">
-                <dt>Peso:</dt>
+                <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
                 <dd><%= number_to_human(pm.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
-                <dt>Dimensões:</dt>
+                <dt class="fw-semibold">Dimensões:</dt>
                 <dd><%= pm.dimensions %></dd>
               </dl>  
             </div>

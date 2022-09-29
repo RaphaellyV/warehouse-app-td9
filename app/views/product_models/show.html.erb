@@ -1,16 +1,16 @@
-<h1 class="my-3">Produto: <%= @product_model.name %></h1>
-<h5 class="my-3">SKU: <%= @product_model.sku %></h5>
+<h1 class="my-3"><%= ProductModel.model_name.human %>: <%= @product_model.name %></h1>
+<h5 class="my-3"><%= ProductModel.human_attribute_name(:sku) %>: <%= @product_model.sku %></h5>
 
 <div>
   <dl>
-    <dt><strong>Dimensões: </strong></dt>
+    <dt class="fw-semibold">Dimensões:</dt>
     <dd>
     <%= @product_model.dimensions %>
     </dd>
-    <dt><strong>Peso: </strong></dt>
+    <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
     <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
-    <dt><strong>Fornecedor: </strong></dt>
-    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier) %></dd>
+    <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:supplier) %>:</dt>
+    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier), class: "link-dark" %></dd>
   </dl>
 </div>
 
