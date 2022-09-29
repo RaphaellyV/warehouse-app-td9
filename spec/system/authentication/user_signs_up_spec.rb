@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário se autentica' do
+describe 'Usuário se cadastra' do
   it 'com sucesso' do
     # Arrange
 
