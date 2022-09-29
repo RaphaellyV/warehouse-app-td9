@@ -1,0 +1,14 @@
+<h1 class="my-3">Pedido #<%= @order.id %></h1>
+
+<div>
+  <dl>
+    <dt><strong>Data Prevista de Entrega: </strong></dt>
+    <dd><%= I18n.l(@order.estimated_delivery_date) %></dd>
+    <dt><strong>Galpão Destino: </strong></dt>
+    <dd><%= @order.warehouse.warehouse_full_description %></dd>
+    <dt><strong>Fornecedor: </strong></dt>
+    <dd><%= @order.supplier.supplier_full_description %></dd>
+    <dt><strong>Usuário Responsável: </strong></dt>
+    <dd><%= @order.user.user_full_description %></dd>
+  </dl>
+</div>

@@ -21,7 +21,7 @@ class SuppliersController < ApplicationController
   end
 
   def show
-    @product_models = ProductModel.where(supplier:@supplier).order(:name)
+    @product_models = @supplier.product_models.order(:name)
   end
 
   def edit; end

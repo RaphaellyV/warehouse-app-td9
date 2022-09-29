@@ -25,9 +25,9 @@
       <%= f.number_field :height, class: "form-control", placeholder: 'altura em cm' %>
     </div>
   </div>
-  <div class="mb-3">
+  <div class="d-grid col-4 mb-3">
       <%= f.label :supplier_id, class: "form-label fw-semibold" %>
-      <%= f.collection_select :supplier_id, @suppliers, :id, :brand_name, prompt: '' %>
+      <%= f.collection_select :supplier_id, @suppliers, :id, :brand_name, prompt: true %>
   </div>
   <div class="d-grid gap-2 col-4 mb-3">
     <%= f.submit class: "btn btn-dark" %>

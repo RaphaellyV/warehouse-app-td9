@@ -177,4 +177,29 @@ RSpec.describe Warehouse, type: :model do
       end
     end
   end
+
+  describe '#warehouse_full_description' do
+    it 'exibe o código e nome do galpão' do
+      # Arrange
+      w = Warehouse.new(name: 'Galpão Cuiabá', code: 'CBA')
+
+      # Act
+      result = w.warehouse_full_description
+      
+      # Assert
+      expect(result).to eq 'CBA - Galpão Cuiabá'
+    end
+  end
+
+  describe '#formatted_address' do
+    it 'exibe o endereço, a cidade e o estado do galpão' do
+      # Arrange
+      w = Warehouse.new(city: 'São Paulo', state: 'SP', address: 'Av. Beda, 120')
+
+      # Act
+      
+      # Assert
+      expect(w.formatted_address).to eq 'Av. Beda, 120 - São Paulo/SP'
+    end
+  end
 end

@@ -5,13 +5,12 @@
   <dl>
     <dt><strong>CNPJ: </strong></dt>
     <dd>
-    <%= "#{@supplier.registration_number[0, 2]}.#{@supplier.registration_number[2, 3]}.#{@supplier.registration_number[5, 3]}/#{
-         @supplier.registration_number[8, 4]}-#{@supplier.registration_number[12, 2]}" %>
+    <%= @supplier.formatted_registration_number %>
     </dd>
     <dt><strong>Endereço: </strong></dt>
-    <dd><%= @supplier.full_address %> - <%= @supplier.city %> - <%= @supplier.state %></dd>
+    <dd><%= @supplier.formatted_address %></dd>
     <dt><strong>CEP: </strong></dt>
-    <dd><%= "#{@supplier.postal_code[0, 2]}.#{@supplier.postal_code[2, 7]}" %></dd>
+    <dd><%= @supplier.formatted_postal_code %></dd>
     <dt><strong>Telefone: </strong></dt>
     <dd><%= number_to_phone(@supplier.phone_number, pattern: /(\d{1,5})(\d{5})(\d{4})$/, area_code: true) %></dd>
     <dt><strong>E-mail: </strong></dt>
@@ -33,6 +32,7 @@
       Não existem Modelos de Produto cadastrados para este Fornecedor
     </div>
   <% else %>
+    <h4 class="my-3">Modelos de produtos cadastrados</h4>
     <% @product_models.each do |pm| %>
           <div class="card my-3">
             <div class="card-body">
@@ -42,7 +42,7 @@
                 <dt>Peso:</dt>
                 <dd><%= number_to_human(pm.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
                 <dt>Dimensões:</dt>
-                <dd><%= pm.width %> cm x <%= pm.depth %> cm x <%= pm.height %> cm</dd>
+                <dd><%= pm.dimensions %></dd>
               </dl>  
             </div>
           </div>

@@ -5,7 +5,7 @@
   <dl>
     <dt><strong>Dimensões: </strong></dt>
     <dd>
-    <%= @product_model.width %> cm x <%= @product_model.depth %> cm x <%= @product_model.height %> cm
+    <%= @product_model.dimensions %>
     </dd>
     <dt><strong>Peso: </strong></dt>
     <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>

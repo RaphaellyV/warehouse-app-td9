@@ -74,8 +74,8 @@ describe 'Usuário edita um fornecedor' do
     user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
     
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
-      full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
-      email: 'contato@acme.com.br', phone_number: '22999994444')
+                     full_address: 'Av. das Palmas, 100', city: 'Bauru', state: 'SP', postal_code: '12240-670', 
+                     email: 'contato@acme.com.br', phone_number: '22999994444')
 
     # Act
     login_as user

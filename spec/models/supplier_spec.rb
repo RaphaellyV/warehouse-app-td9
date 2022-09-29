@@ -136,4 +136,52 @@ RSpec.describe Supplier, type: :model do
       end
     end
   end
+
+  describe '#supplier_full_description' do
+    it 'exibe o nome fantasia e a razão social' do
+      # Arrange
+      s = Supplier.new(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung')
+
+      # Act
+      
+      # Assert
+      expect(s.supplier_full_description).to eq 'Samsung - Samsung Eletrônicos LTDA'
+    end
+  end
+
+  describe '#formatted_registration_number' do
+    it 'exibe o CNPJ formatado' do
+      # Arrange
+      supplier = Supplier.new(registration_number: '00000000000100')
+
+      # Act
+
+      # Assert
+      expect(supplier.formatted_registration_number).to eq '00.000.000/0001-00'
+    end
+  end
+
+  describe '#formatted_address' do
+    it 'exibe o endereço completo com cidade e estado' do
+      # Arrange
+      supplier = Supplier.new(city: 'São Paulo', state: 'SP', full_address: 'Av. Beda, 120')
+
+      # Act
+
+      # Assert
+      expect(supplier.formatted_address).to eq 'Av. Beda, 120 - São Paulo - SP'
+    end
+  end
+
+  describe '#formatted_postal_code' do
+    it 'exibe o endereço completo com cidade e estado' do
+      # Arrange
+      supplier = Supplier.new(postal_code: '00000-000')
+
+      # Act
+
+      # Assert
+      expect(supplier.formatted_postal_code).to eq '00.000-000'
+    end
+  end
 end

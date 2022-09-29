@@ -258,4 +258,16 @@ RSpec.describe ProductModel, type: :model do
       end
     end
   end
+
+  describe '#dimensions' do
+    it 'exibe o comprimento, a largura e a altura' do
+      # Arrange
+      pm = ProductModel.new(width: 40, depth: 30, height: 60)
+
+      # Act
+
+      # Assert
+      expect(pm.dimensions).to eq '40 cm x 30 cm x 60 cm'
+    end
+  end
 end
