@@ -5,115 +5,103 @@ RSpec.describe ProductModel, type: :model do
     context 'presence' do
       it 'name is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: '', weight: 8_000, width: 70, height: 45, depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(name: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :name).to be true
       end
 
       it 'weight is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: '', width: 70, height: 45, depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(weight: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :weight).to be true
       end
 
       it 'width is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: '', height: 45, depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(width: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :width).to eq true
       end
 
       it 'height is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: '', depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(height: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :height).to be true
       end
 
       it 'depth is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: '', 
-                              sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(depth: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :depth).to be true
       end
 
       it 'sku is mandatory' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: 10, 
-                              sku: '', supplier: supplier)
+        pm = ProductModel.new(sku: '')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :sku).to be true
       end
     end
 
     context 'length' do
-      it 'false when SKU is short' do
+      it 'SKU must be 20 characters long' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO9', supplier: supplier)
+        pm = ProductModel.new(sku: 'TV32P-SAMSUNG-XPTO90')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :sku).to be false
       end
-      it 'false when SKU is long' do
+
+      it 'SKU must not be short' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: 10, 
-                              sku: 'TV32P-SAMSUNG-XPTO900', supplier: supplier)
+        pm = ProductModel.new(sku: 'TV32P-SAMSUNG-XPTO9')
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :sku).to be true
+      end
+
+      it 'SKU must not be long' do
+        # Arrange
+        pm = ProductModel.new(sku: 'TV32P-SAMSUNG-XPTO900')
+
+        # Act
+        pm.valid?
+
+        # Assert
+        expect(pm.errors.include? :sku).to be true
       end
     end
 
@@ -126,135 +114,148 @@ RSpec.describe ProductModel, type: :model do
 
         pm = ProductModel.create!(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: 10, 
                               sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
-        other_pm = ProductModel.new(name: 'TV-32G', weight: 7_000, width: 75, height: 50, depth: 12, 
-                                    sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+
+        other_pm = ProductModel.new(sku: 'TV32P-SAMSUNG-XPTO90')
 
         # Act
+        other_pm.valid?
 
         # Assert
-        expect(other_pm.valid?).to eq false
+        expect(other_pm.errors.include? :sku).to be true
       end
     end
 
     context 'numericality' do
       it 'weight must be greater than zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: -1, width: 70, height: 45, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(weight: 1)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :weight).to be false
+      end
+
+      it 'weight must not be less than zero' do
+        # Arrange
+        pm = ProductModel.new(weight: -1)
+
+        # Act
+        pm.valid?
+
+        # Assert
+        expect(pm.errors.include? :weight).to be true
       end
 
       it 'weight must not be equal to zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 0, width: 70, height: 45, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(weight: 0)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :weight).to be true
       end
 
       it 'width must be greater than zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: -1, height: 45, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(width: 1)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :width).to be false
+      end
+
+      it 'width must not be less than zero' do
+        # Arrange
+        pm = ProductModel.new(width: -1)
+
+        # Act
+        pm.valid?
+
+        # Assert
+        expect(pm.errors.include? :width).to be true
       end
 
       it 'width must not be equal to zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 0, height: 45, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(width: 0)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :width).to be true
       end
 
       it 'height must be greater than zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: -1, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(height: 1)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :height).to be false
+      end
+
+      it 'height must not be less than zero' do
+        # Arrange
+        pm = ProductModel.new(height: -1)
+
+        # Act
+        pm.valid?
+
+        # Assert
+        expect(pm.errors.include? :height).to be true
       end
 
       it 'height must not be equal to zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 0, depth: 10, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(height: 0)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :height).to be true
       end
 
       it 'depth must be greater than zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: -1, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(depth: 1)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :depth).to be false
+      end
+
+      it 'depth must not be less than zero' do
+        # Arrange
+        pm = ProductModel.new(depth: -1)
+
+        # Act
+        pm.valid?
+
+        # Assert
+        expect(pm.errors.include? :depth).to be true
       end
 
       it 'depth must not be equal to zero' do
         # Arrange
-        supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', registration_number: '12300000000100', 
-                                    full_address: 'Av. das Nações Unidas, 1000', city: 'São Paulo', state: 'SP', postal_code: '12240-670', 
-                                    email: 'contato@samsung.com.br', phone_number: '22998888888')
-
-        pm = ProductModel.new(name: 'TV-32', weight: 8_000, width: 70, height: 45, depth: 0, 
-                                  sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+        pm = ProductModel.new(depth: 0)
 
         # Act
+        pm.valid?
 
         # Assert
-        expect(pm.valid?).to eq false
+        expect(pm.errors.include? :depth).to be true
       end
     end
   end

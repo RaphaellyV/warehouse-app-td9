@@ -45,6 +45,14 @@ $ bin/setup
 $ rails db:seed
 ```
 
+<p align = "justify"> Visualize no navegador: </p>
+
+```
+$ rails s
+```
+
+* Acesse http://localhost:3000/
+
 ## Como rodar os testes
 
 ```

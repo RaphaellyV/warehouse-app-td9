@@ -1,0 +1,32 @@
+<h1 class="my-3"><%= Order.model_name.human count: 2 %></h1>
+
+<div class="my-3">
+  <%= link_to 'Cadastrar Pedido', new_order_path, class: "btn btn-outline-dark " %>
+</div>
+
+<% if @orders.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><%= Order.model_name.human %></th>
+        <th scope="col"><%= Order.human_attribute_name(:supplier) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:warehouse) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:estimated_delivery_date) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.code, order, class: "link-dark" %></td>
+          <td><%= link_to order.supplier.supplier_full_description, order.supplier, class: "link-dark" %></td>
+          <td><%= link_to order.warehouse.warehouse_full_description, order.warehouse, class: "link-dark" %></td>
+          <td><%= I18n.l(order.estimated_delivery_date) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center" role="alert">
+    Não existem pedidos cadastrados.
+  </div>
+<% end %>

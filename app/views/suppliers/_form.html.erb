@@ -9,7 +9,7 @@
   </div>
   <div class="mb-3">
       <%= f.label :registration_number, class: "form-label fw-semibold" %>
-      <%= f.text_field :registration_number, class: "form-control", placeholder: '00000000000000' %>
+      <%= f.text_field :registration_number, class: "form-control", placeholder: 'Somente números', maxlength: 14 %>
   </div>
   <div class="mb-3">
       <%= f.label :full_address, class: "form-label fw-semibold" %>
@@ -26,7 +26,7 @@
     </div>
     <div class="col">
       <%= f.label :postal_code, class: "form-label fw-semibold" %>
-      <%= f.text_field :postal_code, class: "form-control", placeholder: '00000-000' %>
+      <%= f.text_field :postal_code, class: "form-control", placeholder: '00000-000', maxlength: 9 %>
     </div>
   </div>
   <div class="mb-3">
@@ -35,7 +35,7 @@
   </div>
   <div class="mb-3">
     <%= f.label :phone_number, class: "form-label fw-semibold" %>
-    <%= f.text_field :phone_number, class: "form-control" %>
+    <%= f.text_field :phone_number, class: "form-control", placeholder: 'Somente números', maxlength: 11 %>
   </div>
   <div class="d-grid gap-2 col-4 mb-3">
     <%= f.submit class: "btn btn-dark" %>

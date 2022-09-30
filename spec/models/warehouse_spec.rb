@@ -5,98 +5,89 @@ RSpec.describe Warehouse, type: :model do
     context 'presence' do
       it 'name is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: '', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio', postal_code: '25000-000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(name: '')
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :name).to be true
       end
   
       it 'code is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: '', address: 'Endereço',
-                                  city: 'Rio', postal_code: '25000-000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(code: '')
+
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :code).to be true
       end
   
       it 'address is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: '',
-                                  city: 'Rio', postal_code: '25000-000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(address: '')
+       
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :address).to be true
       end
   
       it 'city is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: '', postal_code: '25000-000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(city: '')
+
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :city).to be true
       end
 
       it 'state is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000-000', area: 1000,
-                                  description: 'Alguma descrição.', state: '')
+        warehouse = Warehouse.new(state: '')
+        
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :state).to be true
       end
   
       it 'postal code is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(postal_code: '')
+
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :postal_code).to be true
       end
   
       it 'area is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000-000', area: '',
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(area: '')
+
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :area).to be true
       end
   
       it 'description is mandatory' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000-000', area: 1000,
-                                  description: '', state: 'RJ')
+        warehouse = Warehouse.new(description: '')
+
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :description).to be true
       end
     end
     
@@ -106,15 +97,13 @@ RSpec.describe Warehouse, type: :model do
         first_warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Endereço',
                                             city: 'Rio', postal_code: '25000-000', area: 1000,
                                             description: 'Alguma descrição.', state: 'RJ')
-        second_warehouse = Warehouse.new(name: 'Niterói', code: 'RIO', address: 'Avenida',
-                                         city: 'Niterói', postal_code: '26000-000', area: 1500,
-                                         description: 'Outra descrição.', state: 'Rio de Janeiro')
+        second_warehouse = Warehouse.new(code: 'RIO')
         
         # Act
-        result = second_warehouse.valid?
+        second_warehouse.valid?
   
         # Assert
-        expect(result).to eq false
+        expect(second_warehouse.errors.include? :code).to be true
       end
   
       it 'name must be unique' do
@@ -123,57 +112,60 @@ RSpec.describe Warehouse, type: :model do
                                             city: 'Rio', postal_code: '25000-000', area: 1000,
                                             description: 'Alguma descrição.', state: 'RJ')
       
-        second_warehouse = Warehouse.new(name: 'Rio', code: 'NIT', address: 'Avenida',
-                                         city: 'Niterói', postal_code: '26000-000', area: 1500,
-                                         description: 'Outra descrição.', state: 'Rio de Janeiro')
+        second_warehouse = Warehouse.new(name: 'Rio')
 
       
         # Act
-        result = second_warehouse.valid?
+        second_warehouse.valid?
 
         # Assert
-        expect(result).to eq false
+        expect(second_warehouse.errors.include? :name).to be true
       end
     end
 
     context 'format' do
-      it 'false when postal code is short' do
+      it 'postal code must be 5 numbers, 1 - and 3 numbers' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000-00', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(postal_code: '12240-670')
 
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
 
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :postal_code).to be false
       end
 
-      it 'false when postal code is long' do
+      it 'postal code must not be short' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000-0000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(postal_code: '25000-00')
 
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
 
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :postal_code).to be true
       end
 
-      it 'false when postal code has no -' do
+      it 'postal code must not be long' do
         # Arrange
-        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', address: 'Endereço',
-                                  city: 'Rio de Janeiro', postal_code: '25000000', area: 1000,
-                                  description: 'Alguma descrição.', state: 'RJ')
+        warehouse = Warehouse.new(postal_code: '25000-0000')
 
         # Act
-        result = warehouse.valid?
+        warehouse.valid?
 
         # Assert
-        expect(result).to eq false
+        expect(warehouse.errors.include? :postal_code).to be true
+      end
+
+      it 'postal code must have -' do
+        # Arrange
+        warehouse = Warehouse.new(postal_code: '25000000')
+
+        # Act
+        warehouse.valid?
+
+        # Assert
+        expect(warehouse.errors.include? :postal_code).to be true
       end
     end
   end
