@@ -97,6 +97,7 @@ describe 'Usuário edita um fornecedor' do
     click_on 'Atualizar Fornecedor'
 
     # Assert
+    expect(page).to have_content 'Editar Fornecedor'
     expect(page).to have_content 'Não foi possível atualizar o fornecedor.'
   end
 end

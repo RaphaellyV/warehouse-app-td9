@@ -75,6 +75,5 @@ describe 'Usuário vê pedidos' do
 
     # Assert
     expect(page).to have_content 'Não existem pedidos cadastrados.'
-
   end
 end

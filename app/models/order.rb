@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   validates :code, :estimated_delivery_date, presence: true
   validates :estimated_delivery_date, comparison: { greater_than: Date.today, message: 'deve ser futura' }
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
 
   private
 
