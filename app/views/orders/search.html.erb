@@ -1,22 +1,32 @@
-<h1 class="my-3">Resultados da Busca por: <%= @code %></h1>
+<h2 class="my-3">Resultados da Busca por: <%= @code %></h2>
 
-<% if @order.present? %>
+<% if @orders.any? %>
   <div class="alert alert-success" role="alert">
-    1 pedido encontrado
+    <%= @orders.count %> <%= Order.model_name.human(count: @orders.count).downcase %> <%= t(:found, count: @orders.count) %>
   </div>
-  <dl>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:code) %>:</dt>
-    <dd><%= @order.code %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:estimated_delivery_date) %>:</dt>
-    <dd><%= I18n.l(@order.estimated_delivery_date) %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:warehouse) %>:</dt>
-    <dd><%= link_to @order.warehouse.warehouse_full_description, @order.warehouse, class: "link-dark" %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:supplier) %>:</dt>
-    <dd><%= link_to @order.supplier.supplier_full_description, @order.supplier, class: "link-dark" %></dd>
-  </dl>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><%= Order.human_attribute_name(:code) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:estimated_delivery_date) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:supplier) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:warehouse) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |o| %>
+        <tr>
+          <td><%= link_to o.code, o, class: "link-dark" %></td>
+          <td><%= I18n.l(o.estimated_delivery_date) %></td>
+          <td><%= link_to o.supplier.supplier_full_description, o.supplier, class: "link-dark" %></td>
+          <td><%= link_to o.warehouse.warehouse_full_description, o.warehouse, class: "link-dark" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <div class="alert alert-danger" role="alert">
-    Não foi possível encontrar o pedido.
+    <%= t(:order_not_found) %>
   </div>
 <% end %>
 

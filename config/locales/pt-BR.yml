@@ -1,0 +1,6 @@
+pt-BR:
+  found:
+    one: "encontrado"
+    other: "encontrados"
+  order_not_found: "Não foi possível encontrar o pedido."
+  search_results: "Resultados da Busca por:"
