@@ -18,6 +18,11 @@
 ## Funcionalidade
 
 - [X] Autenticação necessária em todas as telas.
+- [X] Telas de listagem, cadastro e detalhes de galpões.
+- [X] Telas de listagem, cadastro, detalhes e edição de fornecedores.
+- [X] Telas de listagem, cadastro e detalhes de modelos de produtos.
+- [X] Criação de pedido com galpão, fornecedor, data de entrega, usuário responsável (adicionado automaticamente) e código de rastreio (gerado automaticamente).
+- [X] Busca por pedidos a partir do código de rastreio.
 
 ## Como rodar a aplicação
 
