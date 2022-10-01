@@ -1,6 +1,16 @@
 require 'rails_helper'
 
-describe 'Usuário vê pedidos' do
+describe 'Usuário vê seus próprios pedidos' do
+  it 'e deve estar autenticado' do
+    # Arrange
+
+    # Act
+    visit root_path
+    
+    # Assert
+    expect(page).not_to have_link 'Meus Pedidos'
+  end
+
   it 'a partir da tela inicial' do
     # Arrange
     user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
@@ -9,17 +19,19 @@ describe 'Usuário vê pedidos' do
     login_as user
     visit root_path
     within 'nav' do
-      click_on 'Pedidos'
+      click_on 'Meus Pedidos'
     end
 
     # Assert
     expect(current_path).to eq orders_path
-    expect(page).to have_content 'Pedidos'
+    expect(page).to have_content 'Meus Pedidos'
   end
 
-  it 'com sucesso' do
+  it 'e não vê outros pedidos' do
     # Arrange
     user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+    other_user = User.create!(name: 'Maria', email: 'maria@email.com', password: 'password2')
+
     
     warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
                                   address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
@@ -39,29 +51,33 @@ describe 'Usuário vê pedidos' do
     
     first_order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
                                 warehouse: warehouse, user: user)
-    second_order = Order.create!(estimated_delivery_date: 1.week.from_now, supplier: other_supplier, 
-                                 warehouse: other_warehouse, user: user)
+    second_order = Order.create!(estimated_delivery_date: 2.weeks.from_now, supplier: other_supplier, 
+                                warehouse: other_warehouse, user: other_user)
+    third_order = Order.create!(estimated_delivery_date: 1.week.from_now, supplier: supplier, 
+                                warehouse: warehouse, user: user)
 
     # Act
     login_as user
     visit root_path
     within 'nav' do
-      click_on 'Pedidos'
+      click_on 'Meus Pedidos'
     end
 
     # Assert
-    expect(page).to have_content 'Pedido'
+    expect(page).to have_content 'Meus Pedidos'
     expect(page).to have_content first_order.code
-    expect(page).to have_content second_order.code
+    expect(page).not_to have_content second_order.code
+    expect(page).to have_content third_order.code
     expect(page).to have_content 'Fornecedor'
     expect(page).to have_link 'Samsung - Samsung Eletrônicos LTDA'
-    expect(page).to have_link 'Helena - Helena Eletrônicos LTDA'
+    expect(page).not_to have_link 'Helena - Helena Eletrônicos LTDA'
     expect(page).to have_content 'Galpão Destino'
     expect(page).to have_link 'GRU - Aeroporto SP'
-    expect(page).to have_link 'SDU - Rio'
+    expect(page).not_to have_link 'SDU - Rio'
     expect(page).to have_content 'Data Prevista de Entrega'
     expect(page).to have_content Date.tomorrow.strftime("%d/%m/%Y")
     expect(page).to have_content 1.week.from_now.strftime("%d/%m/%Y")
+    expect(page).not_to have_content 2.weeks.from_now.strftime("%d/%m/%Y")
   end
 
   it 'e não existem pedidos cadastrados' do
@@ -71,7 +87,7 @@ describe 'Usuário vê pedidos' do
     # Act
     login_as user
     visit root_path
-    click_on 'Pedidos'
+    click_on 'Meus Pedidos'
 
     # Assert
     expect(page).to have_content 'Não existem pedidos cadastrados.'

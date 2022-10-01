@@ -11,9 +11,9 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.new(warehouse_params)
     
     if @warehouse.save
-      redirect_to root_url, notice: 'Galpão cadastrado com sucesso!'
+      redirect_to root_url, notice: t(:warehouse_creation_success)
     else
-      flash.now[:alert] = 'Galpão não cadastrado.'
+      flash.now[:alert] = t(:warehouse_creation_error)
       render 'new' 
     end    
   end
@@ -22,16 +22,16 @@ class WarehousesController < ApplicationController
 
   def update 
     if @warehouse.update(warehouse_params)
-      redirect_to warehouse_url(@warehouse.id), notice: 'Galpão atualizado com sucesso!'
+      redirect_to warehouse_url(@warehouse.id), notice: t(:warehouse_update_success)
     else
-      flash.now[:alert] = 'Não foi possível atualizar o galpão.'
+      flash.now[:alert] = t(:warehouse_update_error)
       render 'edit'
     end
   end
 
   def destroy
     @warehouse.destroy
-    redirect_to root_url, notice: 'Galpão removido com sucesso.'
+    redirect_to root_url, notice: t(:warehouse_removal_success)
   end
 
   private

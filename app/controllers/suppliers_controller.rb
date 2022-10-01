@@ -13,9 +13,9 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.new(supplier_params)
 
     if @supplier.save
-      redirect_to supplier_url(@supplier.id), notice: 'Fornecedor cadastrado com sucesso!'
+      redirect_to supplier_url(@supplier.id), notice: t(:supplier_creation_success)
     else
-      flash.now[:alert] = "Fornecedor não cadastrado."
+      flash.now[:alert] = t(:supplier_creation_error)
       render 'new'
     end
   end
@@ -28,9 +28,9 @@ class SuppliersController < ApplicationController
 
   def update
     if @supplier.update(supplier_params)
-      redirect_to supplier_url(@supplier.id), notice: 'Fornecedor atualizado com sucesso!'
+      redirect_to supplier_url(@supplier.id), notice: t(:supplier_update_success)
     else
-      flash.now[:alert] = "Não foi possível atualizar o fornecedor."
+      flash.now[:alert] = t(:supplier_update_error)
       render 'edit'
     end
   end

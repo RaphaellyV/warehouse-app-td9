@@ -1,4 +1,4 @@
-<h1 class="my-3"><%= Order.model_name.human count: 2 %></h1>
+<h1 class="my-3"><%= t(:my_masc, count: 2) %> <%= Order.model_name.human count: 2 %></h1>
 
 <div class="my-3">
   <%= link_to "#{ t(:register) } #{ Order.model_name.human }", new_order_path, class: "btn btn-outline-dark " %>

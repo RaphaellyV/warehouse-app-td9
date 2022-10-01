@@ -6,6 +6,8 @@ class User < ApplicationRecord
   
   validates :name, presence: true
 
+  has_many :orders
+
   def user_full_description
     "#{name} <#{email}>"
   end

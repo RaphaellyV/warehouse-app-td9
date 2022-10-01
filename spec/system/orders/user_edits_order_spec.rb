@@ -101,42 +101,4 @@ describe 'Usuário edita um pedido' do
     expect(page).to have_content 'Não foi possível atualizar o Pedido.'
     expect(page).to have_content 'Editar Pedido'
   end
-
-  it 'e não é o usuário responsável' do
-    # Arrange
-    user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
-    other_user = User.create!(name: 'Maria', email: 'maria@email.com', password: 'password2')
-    
-    warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
-                                  address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
-                                  description: 'Galpão destinado a cargas internacionais.', state: 'SP')
-    Warehouse.create!(name: 'Maceió', code: 'MCZ',  city: 'Maceió', area: 50_000, state: 'AL',
-                      description: 'Galpão de Maceió.', postal_code: '80000-000', address: 'Av. Atlântica, 50')                          
-    
-    supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', 
-                                registration_number: '12300000000100', full_address: 'Av. das Nações Unidas, 1000', 
-                                city: 'São Paulo', state: 'SP', postal_code: '12240-670', email: 'contato@samsung.com.br', 
-                                phone_number: '22998888888')
-    Supplier.create!(corporate_name: 'Stark Industries LTDA', brand_name: 'Stark', registration_number: '11000000000100', 
-                     full_address: 'Torre da Indústria, 1', city: 'Teresina', state: 'PI', postal_code: '64000-020',
-                     email: 'contato@stark.com', phone_number: '22999994445')
-    
-    order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
-                                warehouse: warehouse, user: user)
-
-    # Act
-    login_as other_user
-    visit root_path
-    click_on 'Pedidos'
-    click_on order.code
-    click_on 'Editar Pedido'
-
-    # Assert
-    expect(page).to have_content 'Não é possível editar este Pedido.'
-    expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
-    expect(page).to have_content 'Fornecedor: Samsung - Samsung Eletrônicos LTDA'
-    expect(page).to have_content 'Usuário Responsável: Pessoa <pessoa@email.com>'
-    expect(page).to have_content "Data Prevista de Entrega: #{Date.tomorrow.strftime("%d/%m/%Y")}"
-    expect(page).to have_content "Pedido #{order.code}"
-  end
 end

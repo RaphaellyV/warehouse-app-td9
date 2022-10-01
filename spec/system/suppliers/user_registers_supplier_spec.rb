@@ -81,7 +81,7 @@ describe 'Usuário cadastra um fornecedor' do
     click_on 'Criar Fornecedor'
 
     #Assert
-    expect(page).to have_content 'Fornecedor não cadastrado.'
+    expect(page).to have_content 'Não foi possível cadastrar o Fornecedor.'
     expect(page).to have_content 'Razão Social não pode ficar em branco'
     expect(page).to have_content 'Nome Fantasia não pode ficar em branco'
     expect(page).to have_content 'CNPJ não pode ficar em branco'
