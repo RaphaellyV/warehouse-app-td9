@@ -15,7 +15,7 @@
 
 <p align = "justify"> Aplicação para Sistema de Galpões e Estoque desenvolvida como parte da 1a etapa da turma 9 do Treinadev. </p>
 
-## Funcionalidade
+## Funcionalidades
 
 - [X] Autenticação necessária em todas as telas.
 - [X] Telas de listagem, cadastro e detalhes de galpões.

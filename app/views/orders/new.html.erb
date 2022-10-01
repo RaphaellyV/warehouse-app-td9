@@ -1,8 +1,8 @@
-<h1 class="my-3">Novo <%= Order.model_name.human %></h1>
+<h1 class="my-3"><%= t(:new) %> <%= Order.model_name.human %></h1>
 
 <% if(@order.errors.any?) %>
   <div class="alert alert-danger" role="alert">
-    <p>Verifique os erros abaixo:</p>
+    <p><%= t(:check_errors) %></p>
     <ul>
       <% @order.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

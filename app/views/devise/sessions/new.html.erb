@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="text-center my-3">Entrar</h2> 
+      <h2 class="text-center my-3"><%= t(:sign_in) %></h2> 
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field mb-3">
@@ -22,7 +22,7 @@
         <% end %>
 
         <div class="actions d-grid gap-2 mb-3">
-          <%= f.submit "Entrar", class: "btn btn-dark" %>
+          <%= f.submit t(:sign_in), class: "btn btn-dark" %>
         </div>
       <% end %>
       

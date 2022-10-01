@@ -1,6 +1,6 @@
 <h1 class="my-3"><%= Warehouse.model_name.human(count: 2) %></h1>
 <div class="my-3">
-  <%= link_to 'Cadastrar Galpão', new_warehouse_path, class: "btn btn-outline-dark" %>
+  <%= link_to "#{ t(:register) } #{ Warehouse.model_name.human }", new_warehouse_path, class: "btn btn-outline-dark" %>
 </div>
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -12,10 +12,10 @@
           <dl class="card-text">
             <dt><%= Warehouse.human_attribute_name(:code) %>:</dt>
             <dd><%= w.code %></dd>
-            <dt>Local:</dt>
+            <dt><%= t(:local) %>:</dt>
             <dd><%= w.city %>/<%= w.state %></dd>
             <dt><%= Warehouse.human_attribute_name(:area) %>:</dt>
-            <dd><%= number_with_delimiter(w.area, delimiter: '.') %> m²</dd>
+            <dd><%= number_with_delimiter(w.area, delimiter: '.') %> <%= t(:sqr_meters) %></dd>
           </dl>  
         </div>
       </div>
@@ -25,6 +25,6 @@
 
 <% if @warehouses.empty? %>
   <div class="alert alert-secondary text-center" role="alert">
-    Não existem galpões cadastrados.
+    <%= t(:no_warehouse_registered) %>
   </div>
 <% end %>

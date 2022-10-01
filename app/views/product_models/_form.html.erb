@@ -9,20 +9,20 @@
   </div>
   <div class="mb-3">
       <%= f.label :weight, class: "form-label fw-semibold" %>
-      <%= f.number_field :weight, class: "form-control", placeholder: 'peso em g' %>
+      <%= f.number_field :weight, class: "form-control", placeholder: t(:weight_g) %>
   </div>
   <div class="row mb-3">
     <div class="col">
       <%= f.label :width, class: "form-label fw-semibold" %>
-      <%= f.number_field :width, class: "form-control", placeholder: 'comprimento em cm' %>
+      <%= f.number_field :width, class: "form-control", placeholder: t(:width_cm) %>
     </div>
     <div class="col">
       <%= f.label :depth, class: "form-label fw-semibold" %>
-      <%= f.number_field :depth, class: "form-control", placeholder: 'largura em cm' %>
+      <%= f.number_field :depth, class: "form-control", placeholder: t(:depth_cm) %>
     </div>
     <div class="col">
       <%= f.label :height, class: "form-label fw-semibold" %>
-      <%= f.number_field :height, class: "form-control", placeholder: 'altura em cm' %>
+      <%= f.number_field :height, class: "form-control", placeholder: t(:height_cm) %>
     </div>
   </div>
   <div class="d-grid col-4 mb-3">

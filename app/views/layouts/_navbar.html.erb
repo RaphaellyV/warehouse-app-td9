@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to 'Galpões & Estoque', root_path, class: 'navbar-brand' %>
+    <%= link_to t(:warehouses_and_storage), root_path, class: 'navbar-brand' %>
     
     <% if user_signed_in? %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
             <%= link_to Supplier.model_name.human(count: 2), suppliers_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Produtos', product_models_path, class: 'nav-link' %>
+            <%= link_to t(:product, count: 2), product_models_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to Order.model_name.human(count: 2), orders_path, class: 'nav-link' %>
@@ -22,22 +22,22 @@
               <%= current_user.name %>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-              <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= button_to t(:logout), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
            </ul>
           </li>
         </ul>
         <ul class="navbar-nav">
           <li>
             <%= form_with(url: search_orders_path, method: :get, class: 'd-flex') do |f| %>
-              <%= f.text_field :query, placeholder: "Buscar Pedido", class: "form-control me-2" %>
-              <%= f.submit 'Buscar', class: "btn btn-dark" %>
+              <%= f.text_field :query, placeholder: "#{ t(:search) } #{ Order.model_name.human }", class: "form-control me-2" %>
+              <%= f.submit t(:search), class: "btn btn-dark" %>
             <% end %>
           </li>
         </ul>
       </div>
     <% else %>
       <ul class="navbar-nav">
-        <%= link_to 'Entrar',  new_user_session_path, class: "btn btn-outline-dark" %>
+        <%= link_to t(:sign_in),  new_user_session_path, class: "btn btn-outline-dark" %>
       </ul>
     <% end %>
   </div>

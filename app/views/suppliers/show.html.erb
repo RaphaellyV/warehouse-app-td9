@@ -20,19 +20,19 @@
 
 <div class="row">
   <div class="d-grid gap-2 col-4 my-3">
-    <%= link_to 'Editar Fornecedor', edit_supplier_path, class: "btn btn-dark" %>
+    <%= link_to "#{ t(:edit) } #{ Supplier.model_name.human }", edit_supplier_path, class: "btn btn-dark" %>
   </div>
   <div class="d-grid gap-2 col-4 my-3">
-    <%= link_to 'Voltar', suppliers_path, class:"btn btn-outline-dark" %>
+    <%= link_to t(:back), suppliers_path, class:"btn btn-outline-dark" %>
   </div>    
 </div>  
 
 <% if @product_models.empty? %>
   <div class="alert alert-secondary text-center" role="alert">
-    Não existem Modelos de Produto cadastrados para este Fornecedor
+    <%= t(:no_product_model_for_supplier) %>
   </div>
 <% else %>
-  <h4 class="my-3">Modelos de produtos cadastrados</h4>
+  <h4 class="my-3"><%= t(:registered_product_models) %></h4>
   <% @product_models.each do |pm| %>
     <div class="card my-3">
       <div class="card-body">
@@ -41,7 +41,7 @@
         <dl class="card-text">
           <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
           <dd><%= number_to_human(pm.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
-          <dt class="fw-semibold">Dimensões:</dt>
+          <dt class="fw-semibold"><%= t(:dimensions) %>:</dt>
           <dd><%= pm.dimensions %></dd>
         </dl>  
       </div>

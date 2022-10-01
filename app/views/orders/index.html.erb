@@ -1,7 +1,7 @@
 <h1 class="my-3"><%= Order.model_name.human count: 2 %></h1>
 
 <div class="my-3">
-  <%= link_to 'Cadastrar Pedido', new_order_path, class: "btn btn-outline-dark " %>
+  <%= link_to "#{ t(:register) } #{ Order.model_name.human }", new_order_path, class: "btn btn-outline-dark " %>
 </div>
 
 <% if @orders.any? %>
@@ -27,6 +27,6 @@
   </table>
 <% else %>
   <div class="alert alert-secondary text-center" role="alert">
-    Não existem pedidos cadastrados.
+    <%= t(:no_order_registered) %>
   </div>
 <% end %>

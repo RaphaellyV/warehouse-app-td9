@@ -3,7 +3,7 @@
 
 
 <dl>
-  <dt class="fw-semibold">Dimensões:</dt>
+  <dt class="fw-semibold"><%= t(:dimensions) %>:</dt>
     <dd><%= @product_model.dimensions %></dd>
     <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
     <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
@@ -13,5 +13,5 @@
 
 
 <div class="d-grid gap-2 col-4 mb-3">
-  <%= link_to 'Voltar', product_models_path, class:"btn btn-outline-dark" %>
+  <%= link_to t(:back), product_models_path, class:"btn btn-outline-dark" %>
 </div>

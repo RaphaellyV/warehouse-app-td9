@@ -9,13 +9,13 @@
     <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:postal_code) %>:</dt>
     <dd><%= @warehouse.formatted_postal_code %></dd>
     <dt class="fw-semibold"><%= Warehouse.human_attribute_name(:area) %>:</dt>
-    <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
+    <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> <%= t(:sqr_meters) %></dd>
   </dl>
 </div>
 <div class="d-grid gap-2 col-4 mb-3">
-  <%= link_to 'Editar', edit_warehouse_path(@warehouse.id), class: "btn btn-dark" %>
-  <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete, class: "btn btn-danger col-12") %>
-  <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>
+  <%= link_to t(:edit), edit_warehouse_path(@warehouse.id), class: "btn btn-dark" %>
+  <%= button_to(t(:remove), warehouse_path(@warehouse.id), method: :delete, class: "btn btn-danger col-12") %>
+  <%= link_to t(:back) , root_path, class:"btn btn-outline-dark" %>
 </div>
 
   

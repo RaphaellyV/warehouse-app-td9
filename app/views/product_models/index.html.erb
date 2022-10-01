@@ -1,7 +1,7 @@
 <h1 class="my-3"><%= ProductModel.model_name.human count: 2 %></h1>
 
 <div class="my-3">
-  <%= link_to 'Cadastrar Modelo de Produto', new_product_model_path, class: "btn btn-outline-dark " %>
+  <%= link_to "#{ t(:register) } #{ ProductModel.model_name.human }", new_product_model_path, class: "btn btn-outline-dark " %>
 </div>
 
 <% if @product_models.any? %>
@@ -25,7 +25,7 @@
   </table>
 <% else %>
   <div class="alert alert-secondary text-center" role="alert">
-    Não existem produtos cadastrados.
+    <%= t(:no_product_model_registered) %>
   </div>
 <% end %>
 
