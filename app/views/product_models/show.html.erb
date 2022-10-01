@@ -1,18 +1,16 @@
 <h1 class="my-3"><%= ProductModel.model_name.human %>: <%= @product_model.name %></h1>
 <h5 class="my-3"><%= ProductModel.human_attribute_name(:sku) %>: <%= @product_model.sku %></h5>
 
-<div>
-  <dl>
-    <dt class="fw-semibold">Dimensões:</dt>
-    <dd>
-    <%= @product_model.dimensions %>
-    </dd>
+
+<dl>
+  <dt class="fw-semibold">Dimensões:</dt>
+    <dd><%= @product_model.dimensions %></dd>
     <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
     <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
     <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:supplier) %>:</dt>
-    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier), class: "link-dark" %></dd>
-  </dl>
-</div>
+    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier), class: "link-dark" %></dd>  
+</dl>
+
 
 <div class="d-grid gap-2 col-4 mb-3">
   <%= link_to 'Voltar', product_models_path, class:"btn btn-outline-dark" %>

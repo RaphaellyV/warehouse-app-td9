@@ -48,7 +48,12 @@ class OrdersController < ApplicationController
       @suppliers = Supplier.all.order(:corporate_name)
       render 'edit'
     end
+  end
+
+  def search
+    @code = params[:query]
     
+    @order = Order.find_by(code: @code)
   end
 
   private

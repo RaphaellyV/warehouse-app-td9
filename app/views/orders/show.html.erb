@@ -1,17 +1,17 @@
 <h1 class="my-3"><%= Order.model_name.human %> <%= @order.code %></h1>
 
-<div>
-  <dl>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:estimated_delivery_date) %>:</dt>
-    <dd><%= I18n.l(@order.estimated_delivery_date) %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:warehouse) %>:</dt>
-    <dd><%= link_to @order.warehouse.warehouse_full_description, @order.warehouse, class: "link-dark" %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:supplier) %>:</dt>
-    <dd><%= link_to @order.supplier.supplier_full_description, @order.supplier, class: "link-dark" %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:user) %>:</dt>
-    <dd><%= @order.user.user_full_description %></dd>
-  </dl>
-</div>
+
+<dl>
+  <dt class="fw-semibold"><%= Order.human_attribute_name(:estimated_delivery_date) %>:</dt>
+  <dd><%= I18n.l(@order.estimated_delivery_date) %></dd>
+  <dt class="fw-semibold"><%= Order.human_attribute_name(:warehouse) %>:</dt>
+  <dd><%= link_to @order.warehouse.warehouse_full_description, @order.warehouse, class: "link-dark" %></dd>
+  <dt class="fw-semibold"><%= Order.human_attribute_name(:supplier) %>:</dt>
+  <dd><%= link_to @order.supplier.supplier_full_description, @order.supplier, class: "link-dark" %></dd>
+  <dt class="fw-semibold"><%= Order.human_attribute_name(:user) %>:</dt>
+  <dd><%= @order.user.user_full_description %></dd>
+</dl>
+
 
 <div class="row">
     <div class="d-grid gap-2 col-4 my-3">

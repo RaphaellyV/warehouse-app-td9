@@ -12,3 +12,4 @@ pt-BR:
         supplier: "Fornecedor"
         warehouse_id: "Galpão Destino"
         warehouse: "Galpão Destino"
+        code: "Código"

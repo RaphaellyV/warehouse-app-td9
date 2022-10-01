@@ -1,0 +1,22 @@
+<h1 class="my-3">Resultados da Busca por: <%= @code %></h1>
+
+<% if @order.present? %>
+  <div class="alert alert-success" role="alert">
+    1 pedido encontrado
+  </div>
+  <dl>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:code) %>:</dt>
+    <dd><%= @order.code %></dd>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:estimated_delivery_date) %>:</dt>
+    <dd><%= I18n.l(@order.estimated_delivery_date) %></dd>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:warehouse) %>:</dt>
+    <dd><%= link_to @order.warehouse.warehouse_full_description, @order.warehouse, class: "link-dark" %></dd>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:supplier) %>:</dt>
+    <dd><%= link_to @order.supplier.supplier_full_description, @order.supplier, class: "link-dark" %></dd>
+  </dl>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    Não foi possível encontrar o pedido.
+  </div>
+<% end %>
+
