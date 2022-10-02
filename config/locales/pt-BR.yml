@@ -27,6 +27,7 @@ pt-BR:
   no_supplier_registered: "Não existem fornecedores cadastrados."
   no_warehouse_registered: "Não existem galpões cadastrados."
   only_numbers: "Somente números"
+  order_access_error: "Você não possui acesso a este pedido."
   order_not_found: "Não foi possível encontrar o pedido."
   order_creation_error: "Não foi possível cadastrar o Pedido."
   order_creation_success: "Pedido cadastrado com sucesso!"

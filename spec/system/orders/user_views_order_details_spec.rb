@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes de um pedido' do
-  it 'com sucesso' do
+  it 'a partir da lista de pedidos' do
     # Arrange
     user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
     
@@ -20,7 +20,7 @@ describe 'Usuário vê detalhes de um pedido' do
     # Act
     login_as user
     visit root_path
-    click_on 'Pedidos'
+    click_on 'Meus Pedidos'
     click_on order.code
 
     # Assert
@@ -52,7 +52,7 @@ describe 'Usuário vê detalhes de um pedido' do
     # Act
     login_as user
     visit root_path
-    click_on 'Pedidos'
+    click_on 'Meus Pedidos'
     click_on order.code
     click_on 'Voltar'
 

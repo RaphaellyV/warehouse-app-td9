@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update]
+  before_action :set_order_and_check_user, only: [:show, :edit, :update]
   before_action :set_warehouses_and_suppliers, only: [:new, :edit]
 
   def index
@@ -46,8 +46,12 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_order
+  def set_order_and_check_user
     @order = Order.find(params[:id])
+    
+    if @order.user != current_user
+      return redirect_to root_url, alert: t(:order_access_error)
+    end
   end
 
   def set_warehouses_and_suppliers

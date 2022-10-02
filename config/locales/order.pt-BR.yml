@@ -6,10 +6,10 @@ pt-BR:
         other: "Pedidos"
     attributes:
       order:
-        user: "Usuário Responsável"
+        code: "Código"
         estimated_delivery_date: "Data Prevista de Entrega"
         supplier_id: "Fornecedor"
         supplier: "Fornecedor"
+        user: "Usuário Responsável"
         warehouse_id: "Galpão Destino"
         warehouse: "Galpão Destino"
-        code: "Código"
