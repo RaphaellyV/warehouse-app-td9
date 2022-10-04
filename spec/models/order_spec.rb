@@ -62,7 +62,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe 'gera um código aleatório ao criar um pedido' do
+  describe 'gera um código aleatório' do
     it 'ao criar um novo pedido' do
       # Arrange
       user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')

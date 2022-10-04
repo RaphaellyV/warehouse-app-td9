@@ -4,11 +4,11 @@
 
 <dl>
   <dt class="fw-semibold"><%= t(:dimensions) %>:</dt>
-    <dd><%= @product_model.dimensions %></dd>
-    <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
-    <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
-    <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:supplier) %>:</dt>
-    <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier), class: "link-dark" %></dd>  
+  <dd><%= @product_model.dimensions %></dd>
+  <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:weight) %>:</dt>
+  <dd><%= number_to_human(@product_model.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
+  <dt class="fw-semibold"><%= ProductModel.human_attribute_name(:supplier) %>:</dt>
+  <dd><%= link_to @product_model.supplier.brand_name, supplier_path(@product_model.supplier), class: "link-dark" %></dd>  
 </dl>
 
 

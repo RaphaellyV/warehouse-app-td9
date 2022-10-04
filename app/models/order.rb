@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  enum status: { pending: 10, canceled: 20,  delivered: 30}
+
   belongs_to :warehouse
   belongs_to :supplier
   belongs_to :user
@@ -11,6 +13,6 @@ class Order < ApplicationRecord
   private
 
   def generate_code
-    self.code = SecureRandom.alphanumeric(10)
+    self.code = SecureRandom.alphanumeric(10).upcase
   end
 end

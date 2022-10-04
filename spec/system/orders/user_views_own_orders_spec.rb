@@ -50,11 +50,11 @@ describe 'Usuário vê seus próprios pedidos' do
                                       phone_number: '22998888844')
     
     first_order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
-                                warehouse: warehouse, user: user)
+                                warehouse: warehouse, user: user, status: 'canceled')
     second_order = Order.create!(estimated_delivery_date: 2.weeks.from_now, supplier: other_supplier, 
-                                warehouse: other_warehouse, user: other_user)
+                                warehouse: other_warehouse, user: other_user, status: 'pending')
     third_order = Order.create!(estimated_delivery_date: 1.week.from_now, supplier: supplier, 
-                                warehouse: warehouse, user: user)
+                                warehouse: warehouse, user: user, status: 'delivered')
 
     # Act
     login_as user
@@ -78,6 +78,10 @@ describe 'Usuário vê seus próprios pedidos' do
     expect(page).to have_content Date.tomorrow.strftime("%d/%m/%Y")
     expect(page).to have_content 1.week.from_now.strftime("%d/%m/%Y")
     expect(page).not_to have_content 2.weeks.from_now.strftime("%d/%m/%Y")
+    expect(page).to have_content 'Status'
+    expect(page).to have_content 'Cancelado'
+    expect(page).to have_content 'Entregue'
+    expect(page).not_to have_content 'Pendente'
   end
 
   it 'e não existem pedidos cadastrados' do

@@ -1,5 +1,15 @@
 <h1 class="my-3"><%= Order.model_name.human %> <%= @order.code %></h1>
+<h3 class="text-muted"><%= Order.human_attribute_name(:status) %>: <%= Order.human_attribute_name("status.#{@order.status}") %></h3>
 
+<% if @order.pending? %>
+  <div class="d-grid gap-2 col-4 my-3">
+    <%= button_to t(:mark_as_delivered), delivered_order_path(@order.id), class: "btn btn-dark" %>
+  </div>
+
+  <div class="d-grid gap-2 col-4 my-3">
+    <%= button_to t(:mark_as_canceled), canceled_order_path(@order.id), class: "btn btn-outline-dark" %>
+  </div>
+<% end %>
 
 <dl>
   <dt class="fw-semibold"><%= Order.human_attribute_name(:estimated_delivery_date) %>:</dt>
@@ -12,12 +22,13 @@
   <dd><%= @order.user.user_full_description %></dd>
 </dl>
 
-
 <div class="row">
+  <% if @order.pending? %>
     <div class="d-grid gap-2 col-4 my-3">
       <%= link_to "#{ t(:edit) } #{ Order.model_name.human }", edit_order_path, class: "btn btn-dark" %>
     </div>
-    <div class="d-grid gap-2 col-4 my-3">
-      <%= link_to t(:back), orders_path, class:"btn btn-outline-dark" %>
-    </div>
+  <% end %>
+  <div class="d-grid gap-2 col-4 my-3">
+    <%= link_to t(:back), orders_path, class:"btn btn-outline-dark" %>
+  </div>
 </div>

@@ -17,6 +17,8 @@ pt-BR:
   height_cm: "altura em cm"
   local: "Local"
   logout: "Sair"
+  mark_as_delivered: "Marcar como Entregue"
+  mark_as_canceled: "Marcar como Cancelado"
   my_masc:
     one: "Meu"
     other: "Meus"

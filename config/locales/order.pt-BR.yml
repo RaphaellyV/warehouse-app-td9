@@ -8,8 +8,13 @@ pt-BR:
       order:
         code: "Código"
         estimated_delivery_date: "Data Prevista de Entrega"
+        status: "Status"
         supplier_id: "Fornecedor"
         supplier: "Fornecedor"
         user: "Usuário Responsável"
         warehouse_id: "Galpão Destino"
         warehouse: "Galpão Destino"
+      order/status:
+        pending: "Pendente"
+        canceled: "Cancelado"
+        delivered: "Entregue"

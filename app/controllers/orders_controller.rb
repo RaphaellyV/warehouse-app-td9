@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order_and_check_user, only: [:show, :edit, :update]
+  before_action :set_order_and_check_user, only: [:show, :edit, :update, :delivered, :canceled]
   before_action :set_warehouses_and_suppliers, only: [:new, :edit]
 
   def index
@@ -37,6 +37,16 @@ class OrdersController < ApplicationController
       @suppliers = Supplier.all.order(:corporate_name)
       render 'edit'
     end
+  end
+
+  def canceled
+    @order.canceled!
+    redirect_to @order
+  end
+
+  def delivered
+    @order.delivered!
+    redirect_to @order
   end
 
   def search
