@@ -66,6 +66,6 @@ $ rspec
 
 ## Informações adicionais
 
-* Gems instaladas: capybara, rspec, devise 
-
 * Usuário criado: pessoa@email.com (senha: password)
+
+* Gems instaladas: capybara, devise, rspec, bootstrap
