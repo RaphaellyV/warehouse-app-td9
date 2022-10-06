@@ -1,0 +1,15 @@
+<h1 class="my-3"><%= t(:new) %> <%= OrderItem.model_name.human %> para o Pedido <%= @order.id %></h1>
+
+<%= form_with(model: [@order, @order_item]) do |f| %>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.label :product_model_id, class: "form-label fw-semibold" %>
+    <%= f.collection_select :product_model_id, @products, :id, :name, prompt: true %>
+  </div>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.label :quantity, class: "form-label fw-semibold" %>
+    <%= f.number_field :quantity, class: "form-control" %>
+  </div>
+   <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.submit 'Adicionar Item', class: "btn btn-dark" %>
+  </div>
+<% end %>

@@ -124,4 +124,45 @@ describe 'Usuário vê seus próprios pedidos' do
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não possui acesso a este pedido.'
   end
+
+  it 'e vê itens do pedido' do
+    # Arrange
+    user = User.create!(name: 'Maria', email: 'maria@email.com', password: 'password2')
+
+    supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_name: 'Samsung', 
+                                registration_number: '12300000000100', full_address: 'Av. das Nações Unidas, 1000', 
+                                city: 'São Paulo', state: 'SP', postal_code: '12240-670', email: 'contato@samsung.com.br', 
+                                phone_number: '22998888888')
+    
+    product_a = ProductModel.create!(name: 'Produto A', weight: 8_000, width: 70, height: 45, depth: 10, 
+                                     sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+
+    product_b = ProductModel.create!(name: 'Produto B', weight: 9_000, width: 80, height: 55, depth: 20, 
+                                      sku: 'TV40P-SAMSUNG-XPTO90', supplier: supplier)
+    
+    product_c = ProductModel.create!(name: 'Produto C', weight: 9_500, width: 85, height: 60, depth: 15, 
+                                        sku: 'TV42P-SAMSUNG-XPTO90', supplier: supplier)
+    
+    warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000, 
+                                  address: 'Avenida do Aeroporto, 1000', postal_code: '15000-000',
+                                  description: 'Galpão destinado a cargas internacionais.', state: 'SP')
+    
+    
+    order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
+                          warehouse: warehouse, user: user)
+    
+    OrderItem.create!(product_model: product_a, order: order, quantity: 19)
+    OrderItem.create!(product_model: product_b, order: order, quantity: 12)
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Meus Pedidos'
+    click_on order.code
+
+    # Assert
+    expect(page).to have_content 'Itens do Pedido'
+    expect(page).to have_content '19 x Produto A'
+    expect(page).to have_content '12 x Produto B'
+  end
 end

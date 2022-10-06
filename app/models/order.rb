@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   belongs_to :warehouse
   belongs_to :supplier
   belongs_to :user
+  has_many :order_items
+  has_many :product_models, through: :order_items
 
   validates :code, :estimated_delivery_date, presence: true
   validates :estimated_delivery_date, comparison: { greater_than: Date.today, message: 'deve ser futura' }

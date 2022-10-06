@@ -22,6 +22,16 @@
   <dd><%= @order.user.user_full_description %></dd>
 </dl>
 
+<h2 class="my-3"><%= OrderItem.model_name.human count: 2 %></h2>
+
+<%= link_to 'Adicionar Item', new_order_order_item_path(@order.id), class:"btn btn-outline-dark" %>
+
+<ul class="my-3">
+  <% @order.order_items.each do |item| %>
+    <li><%= item.quantity %> x <%= item.product_model.name %></li>
+  <% end %>
+</ul>
+
 <div class="row">
   <% if @order.pending? %>
     <div class="d-grid gap-2 col-4 my-3">
