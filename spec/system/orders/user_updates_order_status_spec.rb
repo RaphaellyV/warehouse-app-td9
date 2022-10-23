@@ -13,9 +13,14 @@ describe 'Usuário informa novo status de pedido' do
                                 registration_number: '12300000000100', full_address: 'Av. das Nações Unidas, 1000', 
                                 city: 'São Paulo', state: 'SP', postal_code: '12240-670', email: 'contato@samsung.com.br', 
                                 phone_number: '22998888888')
-    
+
+    product_model = ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
+                                         sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+
     order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
-                                warehouse: warehouse, user: user, status: :pending)
+                          warehouse: warehouse, user: user, status: :pending)
+    
+    OrderItem.create!(product_model: product_model, order: order, quantity: 5)     
 
     # Act
     login_as user
@@ -30,6 +35,8 @@ describe 'Usuário informa novo status de pedido' do
     expect(page).not_to have_button 'Marcar como Cancelado'
     expect(page).not_to have_button 'Marcar como Entregue'
     expect(page).not_to have_link 'Editar Pedido'
+    expect(StockProduct.count).to eq 5
+    expect(StockProduct.where(product_model: product_model, warehouse: warehouse).count).to eq 5
   end
 
   it 'e pedido foi cancelado' do
@@ -47,6 +54,11 @@ describe 'Usuário informa novo status de pedido' do
     
     order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
                                 warehouse: warehouse, user: user, status: :pending)
+    
+    product_model = ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
+                                         sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+
+    OrderItem.create!(product_model: product_model, order: order, quantity: 5)     
 
     # Act
     login_as user
@@ -61,5 +73,6 @@ describe 'Usuário informa novo status de pedido' do
     expect(page).not_to have_button 'Marcar como Cancelado'
     expect(page).not_to have_button 'Marcar como Entregue'
     expect(page).not_to have_link 'Editar Pedido'
+    expect(StockProduct.count).to eq 0
   end
 end

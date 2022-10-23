@@ -46,6 +46,7 @@ class OrdersController < ApplicationController
 
   def delivered
     @order.delivered!
+    @order.order_items.each { |oi| oi.create_stock_product }
     redirect_to @order
   end
 
