@@ -1,8 +1,8 @@
 # Galpões Exemplo
 Warehouse.create!(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000, state: 'RJ',
                   description: 'Galpão do Rio.', postal_code: '20000-000', address: 'Av. do Porto, 1000')
-Warehouse.create!(name: 'Maceió', code: 'MCZ',  city: 'Maceió', area: 50_000, state: 'AL',
-                  description: 'Galpão de Maceió.', postal_code: '80000-000', address: 'Av. Atlântica, 50')
+warehouse = Warehouse.create!(name: 'Maceió', code: 'MCZ',  city: 'Maceió', area: 50_000, state: 'AL',
+                              description: 'Galpão de Maceió.', postal_code: '80000-000', address: 'Av. Atlântica, 50')
 
 # Fornecedores Exemplo
 Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '00000000000100', 
@@ -15,11 +15,19 @@ supplier = Supplier.create!(corporate_name: 'Samsung Eletrônicos LTDA', brand_n
                              full_address: 'Torre da Indústria, 1', city: 'Teresina', state: 'PI', postal_code: '64000-020',
                              email: 'contato@stark.com', phone_number: '22999994445')
 
-# Produtos Exemplo
-ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
-                     sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
-ProductModel.create!(name:'Soundbar 7.1 Surround', weight: 3_000, width: 80, height: 15, 
-                     depth: 10, sku: 'SOU71PP-STARK-NOIZ77', supplier: other_supplier)
-
 # Usuários Exemplo
-User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+user = User.create!(name: 'Pessoa', email: 'pessoa@email.com', password: 'password')
+
+# Pedido
+order = Order.create!(estimated_delivery_date: Date.tomorrow, supplier: supplier, 
+                      warehouse: warehouse, user: user, status: :delivered)
+
+# Produtos
+pm = ProductModel.create!(name: 'TV 32', weight: 8_000, width: 70, height: 45, depth: 10, 
+                          sku: 'TV32P-SAMSUNG-XPTO90', supplier: supplier)
+other_pm = ProductModel.create!(name:'Soundbar 7.1 Surround', weight: 3_000, width: 80, height: 15, 
+                                depth: 10, sku: 'SOU71PP-STARK-NOIZ77', supplier: other_supplier)
+
+# Produtos em Estoque
+3.times { StockProduct.create!(order: order, warehouse: warehouse, product_model: pm) }
+2.times { StockProduct.create!(order: order, warehouse: warehouse, product_model: other_pm) }

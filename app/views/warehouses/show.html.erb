@@ -18,4 +18,18 @@
   <%= link_to t(:back) , root_path, class:"btn btn-outline-dark" %>
 </div>
 
+<hr>
+
+<div>
+  <h3 class="my-3"><%= t(:warehouse_items) %></h3>
+  <ul>
+    <% @stock_products.each_pair do |product, quantity| %>
+      <li><%= "#{ quantity } x #{ product.sku }" %></li>
+    <% end %>
+  </ul>
+</div>
+
+
+
+
   

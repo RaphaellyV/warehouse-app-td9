@@ -1,4 +1,5 @@
 pt-BR:
+  warehouse_items: "Itens no Estoque"
   activerecord:
     models:
       warehouse: 
