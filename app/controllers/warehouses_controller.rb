@@ -2,7 +2,8 @@ class WarehousesController < ApplicationController
   before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
 
   def show
-    @stock_products = @warehouse.stock_products.group(:product_model).count
+    @stock_products = @warehouse.stock_products.where.missing(:stock_product_destination).group(:product_model).count
+    @product_models = @warehouse.product_models.uniq
   end
 
   def new

@@ -1,4 +1,5 @@
 pt-BR:
+  stock_removal: "Saída de Estoque"
   warehouse_items: "Itens no Estoque"
   activerecord:
     models:

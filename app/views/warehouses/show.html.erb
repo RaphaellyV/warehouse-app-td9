@@ -15,7 +15,6 @@
 <div class="d-grid gap-2 col-4 mb-3">
   <%= link_to t(:edit), edit_warehouse_path(@warehouse.id), class: "btn btn-dark" %>
   <%= button_to(t(:remove), warehouse_path(@warehouse.id), method: :delete, class: "btn btn-danger col-12") %>
-  <%= link_to t(:back) , root_path, class:"btn btn-outline-dark" %>
 </div>
 
 <hr>
@@ -27,6 +26,35 @@
       <li><%= "#{ quantity } x #{ product.sku }" %></li>
     <% end %>
   </ul>
+</div>
+
+<hr>
+
+<% if @product_models.present? %>
+  <div>
+    <h3 class="my-3"><%= t(:stock_removal) %></h3>
+    <%= form_with(url: warehouse_stock_product_destinations_path(@warehouse.id)) do |f| %>
+      <div class="mb-3">
+        <%= f.label :product_model_id, "Item para Saída", class: "form-label fw-semibold" %>
+        <%= f.collection_select :product_model_id, @product_models, :id, :sku %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :recipient, "Destinatário", class: "form-label fw-semibold" %>
+        <%= f.text_field :recipient, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :address, "Endereço Destino", class: "form-label fw-semibold" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      <div class="d-grid gap-2 col-4 mb-3">
+        <%= f.submit "Confirmar Retirada", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="d-grid gap-2 col-4 mb-3">
+  <%= link_to t(:back) , root_path, class:"btn btn-outline-dark" %>
 </div>
 
 
