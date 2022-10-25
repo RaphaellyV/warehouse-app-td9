@@ -76,5 +76,7 @@ describe 'Usuário vê o estoque' do
     expect(page).to have_content 'Item retirado com sucesso'
     expect(page).to have_content '1 x TV32P-SAMSUNG-XPTO90'
   end
+
+  # Novo teste
 end
 
